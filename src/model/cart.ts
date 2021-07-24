@@ -1,13 +1,9 @@
-import { Meals } from "./meals";
+import { Meal } from "./meals";
 
-export interface MealOrder {
-  id: string;
-  price: number;
-  amount: number;
-}
 export interface Cart {
-  items: Meals[];
+  items: Meal[];
   totalAmount: number;
-  addItem: (item: Meals) => void;
+  addItem: (item: Meal) => void;
   removeItem: (id: number) => void;
 }
+

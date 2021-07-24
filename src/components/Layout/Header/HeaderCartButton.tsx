@@ -3,10 +3,11 @@ import Button from "./HeaderCartButton.styles";
 
 interface Props {
   className?: string;
+  onClick: () => void;
 }
-const HeaderCartButton = ({ className }: Props) => {
+const HeaderCartButton = ({ className, onClick }: Props) => {
   return (
-    <Button className={className}>
+    <Button className={className} onClick={onClick}>
       <span className="icon">
         <CartIcon />
       </span>
