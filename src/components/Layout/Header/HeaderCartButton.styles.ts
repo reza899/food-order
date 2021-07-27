@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const Button = styled.button`
-  cursor: pointer;
+export const Button = styled.div`
+ .button{ cursor: pointer;
   font: inherit;
   border: none;
   background-color: #4d1601;
@@ -12,9 +12,10 @@ const Button = styled.button`
   align-items: center;
   border-radius: 25px;
   font-weight: bold;
+ }
 
-  &:hover,
-  &:active {
+  .button:hover,
+  .button:active {
     background-color: #2c0d00;
   }
 
@@ -32,8 +33,8 @@ const Button = styled.button`
     font-weight: bold;
   }
 
-  &:hover .badge,
-  &:active .badge {
+  .button:hover .badge,
+  .button:active .badge {
     background-color: #92320c;
   }
 
@@ -59,5 +60,3 @@ const Button = styled.button`
     }
   }
 `;
-
-export default Button;

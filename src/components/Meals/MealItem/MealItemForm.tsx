@@ -1,7 +1,9 @@
+import { useRef } from "react";
+import { FormEvent } from "react";
 import styled from "styled-components";
 import Input from "../../UI/Input";
 
-const StyledInput = styled.form`
+const StyledForm = styled.form`
   text-align: right;
 
   & button {
@@ -23,25 +25,38 @@ const StyledInput = styled.form`
 `;
 
 interface Props {
-  id: string;
+  mealItemId: string;
+  onAddToCart: (amount: number) => void;
 }
 
-const MealItemForm = ({ id }: Props) => {
+const MealItemForm = ({ mealItemId, onAddToCart }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
+
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    const enteredAmount = +ref.current?.value!;
+    if (enteredAmount < 1 || enteredAmount > 5) {
+      return;
+    }
+
+    onAddToCart(enteredAmount);
+  };
   return (
-    <StyledInput>
+    <StyledForm onSubmit={submitHandler}>
       <Input
         input={{
-          id: `price_${id}`,
+          id: `price_${mealItemId}`,
           type: "number",
           min: "1",
           max: "5",
           defaultValue: "1",
           step: "1",
         }}
+        ref={ref}
         label="Price"
       />
-      <button>Add</button>
-    </StyledInput>
+      <button type="submit">Add</button>
+    </StyledForm>
   );
 };
 

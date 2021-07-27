@@ -4,6 +4,5 @@ export interface Cart {
   items: Meal[];
   totalAmount: number;
   addItem: (item: Meal) => void;
-  removeItem: (id: number) => void;
+  removeItem: (id: string) => void;
 }
-

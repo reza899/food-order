@@ -1,6 +1,8 @@
-import { MealOrder } from "../../model/mealOrder";
+import { Meal } from "../../model/meals";
+import { useCartContext } from "../../store/cart-context";
 import Modal from "../UI/Modal";
 import { StyledCart } from "./Cart.styles";
+import CartItem from "./CartItem";
 
 interface Props {
   className?: string;
@@ -8,33 +10,37 @@ interface Props {
 }
 
 const Cart = ({ className, onClose }: Props) => {
-  const cartItems: MealOrder[] = [
-    {
-      meal: {
-        id: "c1",
-        name: "Sushi",
-        price: 12.99,
-      },
-      amount: 2,
-    },
-  ];
+  const { items, totalAmount, addItem, removeItem } = useCartContext();
+
+  const cartItemRemoveHandler = (id: string) => {
+    removeItem(id);
+  };
+
+  const cartItemAddHandler = (item: Meal) => {
+    addItem({ ...item, amount: 1 });
+  };
   return (
     <Modal onClick={onClose}>
       <StyledCart className={className}>
         <ul className="cart-items">
-          {cartItems.map((item) => (
-            <li key={item.meal.id}>{item.meal.name}</li>
+          {items.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              onRemove={cartItemRemoveHandler.bind(null, item.id)}
+              onAdd={cartItemAddHandler.bind(null, item)}
+            />
           ))}
         </ul>
         <div className="total">
           <span>Total Amount</span>
-          <span>35.55</span>
+          <span>{`$${totalAmount.toFixed(2)}`}</span>
         </div>
         <div className="actions">
           <button className="button--alt" onClick={onClose}>
             Cancel
           </button>
-          <button className="button">Submit</button>
+          {items.length > 0 && <button className="button">Submit</button>}
         </div>
       </StyledCart>
     </Modal>

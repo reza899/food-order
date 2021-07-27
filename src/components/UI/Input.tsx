@@ -1,3 +1,6 @@
+import React from "react";
+// import { useImperativeHandle } from "react";
+// import { useRef } from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.div`
@@ -23,13 +26,24 @@ interface Props {
   label: string;
   input: React.InputHTMLAttributes<HTMLInputElement>;
 }
-const Input = ({ label, input }: Props) => {
-  return (
-    <StyledInput>
-      <label htmlFor={input.id}>{label}</label>
-      <input className="input" {...input} />
-    </StyledInput>
-  );
-};
+const Input = React.forwardRef<HTMLInputElement, Props>(
+  ({ label, input }, ref) => {
+    // const inputRef = useRef<HTMLInputElement>(null);
+
+    // const getValue = () => {
+    //   return inputRef.current?.value;
+    // };
+
+    // useImperativeHandle(ref, () => {
+    //   return { valued: getValue };
+    // });
+    return (
+      <StyledInput>
+        <label htmlFor={input.id}>{label}</label>
+        <input className="input" {...input} ref={ref} />
+      </StyledInput>
+    );
+  }
+);
 
 export default Input;
