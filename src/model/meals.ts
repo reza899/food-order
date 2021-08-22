@@ -1,5 +1,5 @@
 export interface Meal {
-  id: string;
+  objectId: string;
   name: string;
   description: string;
   price: number;

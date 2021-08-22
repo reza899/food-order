@@ -22,7 +22,7 @@ const cartReducer = (
       const updatedTotalAmount =
         state.totalAmount + action.payload.amount! * action.payload.price!;
       const existingCartItemIndex = state.items.findIndex(
-        (x) => x.id === action.payload.id
+        (x) => x.objectId === action.payload.objectId
       );
       const existingCartItem = state.items[existingCartItemIndex];
       let updatedItems: Meal[];
@@ -42,14 +42,14 @@ const cartReducer = (
       };
     case "Remove":
       const existingItemIndex = state.items.findIndex(
-        (x) => x.id === action.payload
+        (x) => x.objectId === action.payload
       );
       const existingItem = state.items[existingItemIndex];
 
       const updatedTotalAmountRemove = state.totalAmount - existingItem.price;
       let updatedItemsRemove;
       if (existingItem.amount === 1) {
-        updatedItemsRemove = state.items.filter((x) => x.id !== action.payload);
+        updatedItemsRemove = state.items.filter((x) => x.objectId !== action.payload);
       } else {
         const updatedItem = {
           ...existingItem,

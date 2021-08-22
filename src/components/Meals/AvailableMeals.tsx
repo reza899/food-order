@@ -1,7 +1,11 @@
 import React from "react";
-import { DUMMY_MEALS } from "../../data/dummy-meal";
+import { useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
+import { Meal } from "../../model/meals";
+import request from "../../service/agent";
 import Card from "../UI/Card";
+import Loading from "../UI/Loading";
 import MealItem from "./MealItem/MealItem";
 
 const StyledAvailableMeals = styled.section`
@@ -14,6 +18,10 @@ const StyledAvailableMeals = styled.section`
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  &.MealsLoading {
+    text-align: center;
   }
 
   @keyframes meals-appear {
@@ -30,12 +38,27 @@ const StyledAvailableMeals = styled.section`
 `;
 
 const AvailableMeals = () => {
+  const [meals, setMeals] = useState<Meal[] | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const data = await request.get("Meals ");
+      console.log(data);
+      setMeals(data.results);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (isLoading) return <Loading />;
   return (
     <StyledAvailableMeals>
       <Card>
         <ul>
-          {DUMMY_MEALS.map((meal) => (
-            <MealItem key={meal.id} mealItem={meal} />
+          {meals?.map((meal) => (
+            <MealItem key={meal.objectId} mealItem={meal} />
           ))}
         </ul>
       </Card>

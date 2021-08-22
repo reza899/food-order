@@ -34,7 +34,7 @@ interface Props {
 const MealItem = ({ className, mealItem }: Props) => {
   const { addItem } = useCartContext();
 
-  const { name, description, price, id } = mealItem;
+  const { name, description, price, objectId: id } = mealItem;
   const addToCartHandler = (amount: number) => {
     const mealItemSubmitted = {
       ...mealItem,
