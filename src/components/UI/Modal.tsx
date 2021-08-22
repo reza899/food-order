@@ -5,9 +5,9 @@ import Backdrop from "./Backdrop";
 
 const StyledModal = styled.div`
   position: fixed;
-  top: 20vh;
-  left: 5%;
-  width: 90%;
+  top: 5vh;
+  left: 25%;
+  width: 50%;
   background-color: white;
   padding: 1rem;
   border-radius: 14px;
@@ -15,9 +15,21 @@ const StyledModal = styled.div`
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
 
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+
   @media (min-width: 768px) {
-    width: 40rem;
-    left: calc(50% - 20rem);
+    .modal {
+      width: 40rem;
+      left: calc(50% - 20rem);
+    }
   }
 
   @keyframes slide-down {
@@ -40,17 +52,16 @@ interface Props {
 const Modal: React.FC<Props> = ({ children, onClick }) => {
   return (
     <>
-      {
-        ReactDOM.createPortal(
-          <>
-            <Backdrop onClick={onClick} />
+      {ReactDOM.createPortal(
+        <>
+          <Backdrop onClick={onClick} />
 
-            <StyledModal>
-              <div className="content">{children}</div>
-            </StyledModal>
-          </>,
-          document.getElementById("overlays") as HTMLElement
-        )}
+          <StyledModal>
+            <div className="content">{children}</div>
+          </StyledModal>
+        </>,
+        document.getElementById("overlays") as HTMLElement
+      )}
     </>
   );
 };

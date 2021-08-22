@@ -1,30 +1,43 @@
-import React from "react";
+import React, { FormEvent } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { useCartContext } from "../../store/cart-context";
+import { Form } from "./Checkout.styles";
 
 interface Props {
   className?: string;
   onClose?: () => void;
 }
 
-const CheckoutStyled = styled.section`
-  &.control {
-    text-align: center;
-  }
-`;
-
 const Checkout = ({ onClose, className }: Props) => {
-  const { items, totalAmount } = useCartContext();
+  const { items } = useCartContext();
+
+  const nameRef = useRef<HTMLInputElement>(null);
+  const streetRef = useRef<HTMLInputElement>(null);
+  const postalCodeRef = useRef<HTMLInputElement>(null);
+  const cityRef = useRef<HTMLInputElement>(null);
+
+  const confirmHandler = (e: FormEvent) => {
+    e.preventDefault();
+
+    const enteredName = nameRef.current?.value;
+    const enteredStreet = streetRef.current?.value;
+    const enteredPostalCode = postalCodeRef.current?.value;
+    const enteredCity = cityRef.current?.value;
+
+    
+  };
+
   return (
-    <>
-      <form>
+    <div>
+      <Form onSubmit={confirmHandler} className={className}>
         <div className="control">
           <label htmlFor="name">Name:</label>
-          <input autoFocus type="text" name="name" id="name" />
+          <input autoFocus type="text" name="name" id="name" ref={nameRef} />
         </div>
         <div className="control">
           <label htmlFor="street">Street:</label>
-          <input type="text" name="street" id="street" size={30} />
+          <input type="text" name="street" id="street" ref={streetRef} />
         </div>
         <div className="control">
           <label htmlFor="postal-code">Postal Code:</label>
@@ -34,32 +47,19 @@ const Checkout = ({ onClose, className }: Props) => {
             id="postal-code"
             placeholder="122-445-667"
             size={9}
+            ref={postalCodeRef}
           />
         </div>
         <div className="control">
           <label htmlFor="city">City:</label>
-          <input list="ourCities" name="city" id="city" />
+          <input list="ourCities" name="city" id="city" ref={cityRef} />
           <datalist id="ourCities">
             <option value="Johannesburg" />
             <option value="Capetown" />
           </datalist>
         </div>
-        <div className="control">
-          <label htmlFor="timeDevlivered">Time Devlivered:</label>
-          <input type="time" name="timeDevlivered" id="timeDevlivered" />
-        </div>
 
         <div className={className}>
-          <ul>
-            {items.map((item) => {
-              return (
-                <li>
-                  {item.name} : {item.price} &nbsp; - &nbsp; {item.amount!}
-                </li>
-              );
-            })}
-          </ul>
-
           <div className="actions">
             <button className="button--alt" type="button" onClick={onClose}>
               Cancel
@@ -70,9 +70,15 @@ const Checkout = ({ onClose, className }: Props) => {
             <button className="submit">Confirm</button>
           </div>
         </div>
-      </form>
-    </>
+      </Form>
+    </div>
   );
 };
 
 export default Checkout;
+
+const CheckoutStyled = styled(Checkout)`
+  &.control {
+    text-align: center;
+  }
+`;
