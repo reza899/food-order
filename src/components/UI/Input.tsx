@@ -25,9 +25,10 @@ const StyledInput = styled.div`
 interface Props {
   label: string;
   input: React.InputHTMLAttributes<HTMLInputElement>;
+  type?: string;
 }
 const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ label, input }, ref) => {
+  ({ label, input, type = "text" }, ref) => {
     // const inputRef = useRef<HTMLInputElement>(null);
 
     // const getValue = () => {
@@ -39,8 +40,14 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
     // });
     return (
       <StyledInput>
-        <label htmlFor={input.id}>{label}</label>
-        <input className="input" {...input} ref={ref} />
+        <label htmlFor={input.id}>{label}:</label>
+        <input
+          className="input"
+          {...input}
+          ref={ref}
+          name={label.toLowerCase()}
+          id={label.toLowerCase()}
+        />
       </StyledInput>
     );
   }

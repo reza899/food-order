@@ -1,7 +1,4 @@
-import React, { FormEvent } from "react";
-import { useRef } from "react";
-import styled from "styled-components";
-import { useCartContext } from "../../store/cart-context";
+import useForm from "../../hooks/use-form";
 import { Form } from "./Checkout.styles";
 
 interface Props {
@@ -10,53 +7,57 @@ interface Props {
 }
 
 const Checkout = ({ onClose, className }: Props) => {
-  const { items } = useCartContext();
-
-  const nameRef = useRef<HTMLInputElement>(null);
-  const streetRef = useRef<HTMLInputElement>(null);
-  const postalCodeRef = useRef<HTMLInputElement>(null);
-  const cityRef = useRef<HTMLInputElement>(null);
-
-  const confirmHandler = (e: FormEvent) => {
-    e.preventDefault();
-
-    const enteredName = nameRef.current?.value;
-    const enteredStreet = streetRef.current?.value;
-    const enteredPostalCode = postalCodeRef.current?.value;
-    const enteredCity = cityRef.current?.value;
-
-    
-  };
+  const {
+    state: values,
+    error,
+    submitHandler,
+    changeInputHandler: onChange,
+  } = useForm(
+    {
+      name: "",
+      street: "",
+      postalcode: "",
+    },
+    () => console.log(values)
+  );
 
   return (
     <div>
-      <Form onSubmit={confirmHandler} className={className}>
+      <Form onSubmit={submitHandler} className={className}>
         <div className="control">
           <label htmlFor="name">Name:</label>
-          <input autoFocus type="text" name="name" id="name" ref={nameRef} />
+          <input
+            autoFocus
+            type="text"
+            name="name"
+            id="name"
+            value={values?.name}
+            onChange={onChange}
+          />
+          {error.name}
         </div>
         <div className="control">
           <label htmlFor="street">Street:</label>
-          <input type="text" name="street" id="street" ref={streetRef} />
-        </div>
-        <div className="control">
-          <label htmlFor="postal-code">Postal Code:</label>
           <input
             type="text"
-            name="postal-code"
-            id="postal-code"
-            placeholder="122-445-667"
-            size={9}
-            ref={postalCodeRef}
+            name="street"
+            id="street"
+            value={values?.street}
+            onChange={onChange}
           />
+          {error.street}
         </div>
         <div className="control">
-          <label htmlFor="city">City:</label>
-          <input list="ourCities" name="city" id="city" ref={cityRef} />
-          <datalist id="ourCities">
-            <option value="Johannesburg" />
-            <option value="Capetown" />
-          </datalist>
+          <label htmlFor="postalcode">Postal Code:</label>
+          <input
+            type="text"
+            name="postalcode"
+            id="postalcode"
+            placeholder="122-445-667"
+            onChange={onChange}
+            value={values?.postalcode}
+          />
+          {error.postalcode}
         </div>
 
         <div className={className}>
@@ -76,9 +77,3 @@ const Checkout = ({ onClose, className }: Props) => {
 };
 
 export default Checkout;
-
-const CheckoutStyled = styled(Checkout)`
-  &.control {
-    text-align: center;
-  }
-`;
