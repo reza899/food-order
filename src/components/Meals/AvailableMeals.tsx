@@ -45,7 +45,6 @@ const AvailableMeals = () => {
     async function fetchData() {
       setIsLoading(true);
       const data = await request.get("Meals ");
-      console.log(data);
       setMeals(data.results);
       setIsLoading(false);
     }

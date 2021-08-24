@@ -1,12 +1,14 @@
 import useForm from "../../hooks/use-form";
+import { SubmittingType } from "./Cart";
 import { Form } from "./Checkout.styles";
 
 interface Props {
   className?: string;
   onClose?: () => void;
+  onConfirm: (val: SubmittingType) => void;
 }
 
-const Checkout = ({ onClose, className }: Props) => {
+const Checkout = ({ onClose, className, onConfirm }: Props) => {
   const {
     state: values,
     error,
@@ -18,7 +20,8 @@ const Checkout = ({ onClose, className }: Props) => {
       street: "",
       postalcode: "",
     },
-    () => console.log(values)
+    () => console.log(values),
+    onConfirm
   );
 
   return (
