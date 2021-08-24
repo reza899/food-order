@@ -17,7 +17,8 @@ export type SubmittingType = {
 };
 
 const Cart = ({ className, onClose }: Props) => {
-  const { items, totalAmount, addItem, removeItem } = useCartContext();
+  const { items, totalAmount, addItem, removeItem, clearCart } =
+    useCartContext();
   const [isOrdered, setIsOrdered] = useState(false);
   const [submittingStatus, setSubmittingStatus] = useState({
     submitting: false,
@@ -37,6 +38,7 @@ const Cart = ({ className, onClose }: Props) => {
     val.submitting
       ? setSubmittingStatus({ ...submittingStatus, submitting: true })
       : setSubmittingStatus({ didSubmit: true, submitting: false });
+    clearCart();
   };
   const orderingModalContent = (
     <>

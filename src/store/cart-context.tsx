@@ -6,7 +6,8 @@ const CartContext = React.createContext<Cart>({} as Cart);
 
 type ActionType =
   | { type: "Add"; payload: Meal }
-  | { type: "Remove"; payload: string };
+  | { type: "Remove"; payload: string }
+  | { type: "Clear" };
 
 const intialCartState: { totalAmount: number; items: Meal[] } = {
   totalAmount: 0,
@@ -18,7 +19,7 @@ const cartReducer = (
   action: ActionType
 ): typeof intialCartState => {
   switch (action.type) {
-    case "Add":
+    case "Add": {
       const updatedTotalAmount =
         state.totalAmount + action.payload.amount! * action.payload.price!;
       const existingCartItemIndex = state.items.findIndex(
@@ -40,7 +41,8 @@ const cartReducer = (
         items: updatedItems,
         totalAmount: updatedTotalAmount,
       };
-    case "Remove":
+    }
+    case "Remove": {
       const existingItemIndex = state.items.findIndex(
         (x) => x.objectId === action.payload
       );
@@ -49,7 +51,9 @@ const cartReducer = (
       const updatedTotalAmountRemove = state.totalAmount - existingItem.price;
       let updatedItemsRemove;
       if (existingItem.amount === 1) {
-        updatedItemsRemove = state.items.filter((x) => x.objectId !== action.payload);
+        updatedItemsRemove = state.items.filter(
+          (x) => x.objectId !== action.payload
+        );
       } else {
         const updatedItem = {
           ...existingItem,
@@ -58,11 +62,14 @@ const cartReducer = (
         updatedItemsRemove = [...state.items];
         updatedItemsRemove[existingItemIndex] = updatedItem;
       }
-
       return {
         items: updatedItemsRemove,
         totalAmount: updatedTotalAmountRemove,
       };
+    }
+    case "Clear": {
+      return intialCartState;
+    }
   }
 };
 
@@ -77,11 +84,16 @@ export const CartContextProvider: React.FC = ({ children }) => {
     dispachCart({ type: "Remove", payload: id });
   };
 
+  const clearCartHandler = () => {
+    dispachCart({ type: "Clear" });
+  };
+
   const cartContext: Cart = {
     items: state.items,
     totalAmount: state.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    clearCart: clearCartHandler,
   };
 
   return (

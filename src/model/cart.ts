@@ -5,4 +5,5 @@ export interface Cart {
   totalAmount: number;
   addItem: (item: Meal) => void;
   removeItem: (id: string) => void;
+  clearCart: () => void;
 }
