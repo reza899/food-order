@@ -11,7 +11,7 @@ function App() {
 
   return (
     <CartContextProvider>
-      <ToastContainer />
+      <ToastContainer position="bottom-right" />
       {isModalShow && <Cart onClose={() => setIsModalShow(false)} />}
       <Header onShowCart={() => setIsModalShow(true)} />
       <main>

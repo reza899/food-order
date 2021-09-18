@@ -1,13 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-
-const LoadingStyled = styled("div")`
-  text-align: center;
-  color: white;
-`;
+import ReactLoading from "react-loading";
 
 const Loading = () => {
-  return <LoadingStyled>Loading...</LoadingStyled>;
+  return <ReactLoading type={"cylon"} width={210} />;
 };
 
 export default Loading;
