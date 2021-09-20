@@ -1,9 +1,11 @@
-import React from "react";
+import Summary from "../../components/UI/Summary";
 
 const AllMeals = () => {
   return (
     <>
-      <h1>All Meals</h1>
+      <Summary>
+        <h1>All Meals</h1>
+      </Summary>
     </>
   );
 };
