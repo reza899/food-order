@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { StyledDiv, StyledHeader } from "./Header.styles";
 import HeaderCartButton from "./HeaderCartButton";
 
@@ -10,6 +11,9 @@ const Header = ({ className, onShowCart }: Props) => {
     <StyledHeader className={className}>
       <header>
         <h1>React Meals </h1>
+        <NavLink to="/category">Category</NavLink>
+        <NavLink to="/meals">Meals</NavLink>
+        <NavLink to="/random">Random</NavLink>
         <HeaderCartButton onClick={onShowCart} />
       </header>
       <StyledDiv>
