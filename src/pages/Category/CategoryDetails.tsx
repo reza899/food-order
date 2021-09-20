@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loading from "react-loading";
 import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 import { filterByCategory } from "../../service/mealAgent";
@@ -37,16 +38,19 @@ const CategoryDetails = () => {
   const [mealList, setMealList] = useState<MealsCategoryFiltered[]>(
     [] as MealsCategoryFiltered[]
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const params = useParams<{ name: string }>();
   const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       const resp = await filterByCategory(params.name);
       const meals: MealsCategoryFiltered[] = (await resp.data).meals;
 
       setMealList(meals);
+      setIsLoading(false);
     }
 
     fetchData();
@@ -56,6 +60,8 @@ const CategoryDetails = () => {
     history.push(`/category/${categoryName.toLowerCase()}`);
   };
 
+  if (isLoading) return <Loading />;
+
   return (
     <>
       <h1>Category Details</h1>
@@ -64,7 +70,7 @@ const CategoryDetails = () => {
         {mealList &&
           mealList.map((meal) => {
             return (
-              <div className="item">
+              <div key={meal.strMeal} className="item">
                 <h3 className="header">{meal.strMeal}</h3>
                 <img src={meal.strMealThumb} alt={meal.strMeal} height={100} />
                 <button onClick={() => categoryClickHandler(meal.strMeal)}>
