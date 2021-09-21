@@ -1,23 +1,4 @@
-import styled from "styled-components";
-
-const Summary = styled.section`
-  text-align: center;
-  max-width: 45rem;
-  width: 90%;
-  margin: auto;
-  margin-top: -10rem;
-  position: relative;
-  background-color: #383838;
-  color: white;
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
-
-  h1 {
-    font-size: 2rem;
-    margin-top: 0;
-  }
-`;
+import Summary from "../UI/Summary/Summary";
 
 const MealsSummary = () => {
   return (
@@ -30,7 +11,6 @@ const MealsSummary = () => {
         Odio sint dignissimos saepe ab
       </p>
       <p>
-        {" "}
         dolore vel quos veritatis atque hic laboriosam doloremque sunt ipsam ut
         delectus exercitationem officia nobis! Dolore!
       </p>
