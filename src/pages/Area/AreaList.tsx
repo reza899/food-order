@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "react-loading";
 import { useHistory } from "react-router-dom";
 import AreaCard from "../../components/UI/Card/AreaCard";
+import AreaSummary from "../../components/UI/Summary/AreaSummary";
 import { APIArea } from "../../model/api-meals";
 import { Area } from "../../model/meals";
 import { listAllArea } from "../../service/mealAgent";
@@ -41,7 +42,7 @@ const AreaList = () => {
 
   return (
     <>
-      <h1>Category List</h1>
+      <AreaSummary topHeader="Areas" />
       <AreaCard areas={areaList} clickHandler={categoryClickHandler} />
     </>
   );

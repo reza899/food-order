@@ -12,6 +12,7 @@ import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
 import MealDetails from "./pages/Meals/MealDetails";
 import AreaList from "./pages/Area/AreaList";
+import AreaDetails from "./pages/Area/AreaDetails";
 
 function App() {
   const [isModalShow, setIsModalShow] = useState(false);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/category/:name" component={CategoryDetails} />
         <Route path="/category" component={CategoryList} />
         <Route path="/meal/:name" component={MealDetails} />
+        <Route path="/area/:name" component={AreaDetails} />
         <Route path="/area" component={AreaList} />
         <Route path="/random" component={RandomMeal} />
         <Route path="/error" component={Error} />

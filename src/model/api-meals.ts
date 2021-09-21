@@ -22,3 +22,8 @@ export type APIMealsCategory = {
   strMeal: string;
   strMealThumb: string;
 };
+
+export type APIMealsArea = {
+  strMeal: string;
+  strMealThumb: string;
+};
