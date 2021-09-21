@@ -3,7 +3,7 @@ import { listMealByCategories } from "../../service/mealAgent";
 import { MealCategory } from "../../model/meals";
 import { useHistory } from "react-router";
 import Loading from "../../components/UI/Loading";
-import CategoryMealCard from "../../components/UI/CategoryMealCard";
+import CategoryMealCard from "../../components/UI/Card/CategoryMealCard";
 
 type APICategory = {
   strCategory: string;

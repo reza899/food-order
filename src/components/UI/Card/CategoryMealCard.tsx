@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { MealCategory } from "../../model/meals";
-import Button from "./Button";
+import { MealCategory } from "../../../model/meals";
+import Button from "../Button";
 
 const Wrapper = styled.div`
   display: flex;

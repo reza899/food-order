@@ -11,6 +11,7 @@ import RandomMeal from "./pages/Meal/RandomMeal";
 import AllMeals from "./pages/Meal/AllMeals";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
+import MealDetails from "./pages/Meal/MealDetails";
 
 function App() {
   const [isModalShow, setIsModalShow] = useState(false);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/category/:name" component={CategoryDetails} />
         <Route path="/category" component={CategoryList} />
         <Route path="/random" component={RandomMeal} />
+        <Route path="/meal/:name" component={MealDetails} />
         <Route path="/meals" component={AllMeals} />
         <Route path="/error" component={Error} />
         <Route path="/" component={Home} exact />

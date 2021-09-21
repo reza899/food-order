@@ -17,3 +17,4 @@ export interface MealCategory {
   thumbImg: string;
   description: string;
 }
+

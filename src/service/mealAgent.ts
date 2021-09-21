@@ -31,10 +31,10 @@ export const request = {
 //search
 export const searchMealByName = (param: string) =>
   request.get("https://www.themealdb.com/api/json/v1/1/search.php?s=" + param);
-export const searchMealByLetter = (param: string) =>
-  request.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + param);
-export const searchMealById = (param: string) =>
-  request.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + param);
+// export const searchMealByLetter = (param: string) =>
+// //   request.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + param);
+// export const searchMealById = (param: string) =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + param);
 //random
 export const randomMeal = () =>
   request.get("https://www.themealdb.com/api/json/v1/1/random.php");

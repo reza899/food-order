@@ -57,7 +57,7 @@ const CategoryDetails = () => {
   }, [params.name]);
 
   const categoryClickHandler = (categoryName: string) => {
-    history.push(`/category/${categoryName.toLowerCase()}`);
+    history.push(`/meal/${categoryName.toLowerCase()}`);
   };
 
   if (isLoading) return <Loading />;

@@ -1,4 +1,4 @@
-import Summary from "../../components/UI/Summary";
+import Summary from "../../components/UI/Summary/Summary";
 
 const AllMeals = () => {
   return (
