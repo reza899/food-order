@@ -10,7 +10,6 @@ export interface Meal {
   instrution?: string;
   thumbImg?: string;
   tags?: string[];
-
 }
 
 export interface MealCategory {

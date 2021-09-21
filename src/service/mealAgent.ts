@@ -44,8 +44,8 @@ export const listMealByCategories = () =>
 //list
 export const listAllCategories = () =>
   request.get("https://www.themealdb.com/api/json/v1/1/list.php?c=list");
-export const listAllArea = () =>
-  request.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
+// export const listAllArea = () =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
 //filter
 export const filterByCategory = (param: string) =>
   request.get("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + param);
