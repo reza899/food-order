@@ -5,15 +5,16 @@ import Summary from "./Summary";
 
 interface Props {
   meal: Meal;
+  topHeader: string;
 }
 
-const MealSummary = ({ meal }: Props) => {
+const MealSummary = ({ meal,topHeader }: Props) => {
   return (
     <Summary>
-      <h3>Meal</h3>
+      <h3>{topHeader}</h3>
       <h1>{meal.name}</h1>
       <p>
-        Category:{" "}
+        Category:
         <Link
           to={`/category/${meal.category?.name}`}
           style={{ color: "yellow", fontSize: "0.8rem" }}
@@ -21,7 +22,7 @@ const MealSummary = ({ meal }: Props) => {
           <span> {meal.category?.name}</span>
         </Link>
       </p>
-      <p>Area: {meal.area}</p>
+      <p>Area: {meal.area?.name}</p>
     </Summary>
   );
 };

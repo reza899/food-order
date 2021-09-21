@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Loading from "react-loading";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import MealCard from "../../components/UI/Card/MealCard";
-import Summary from "../../components/UI/Summary/Summary";
+import MealSummary from "../../components/UI/Summary/MealSummary";
 import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
-import { randomMeal } from "../../service/mealAgent";
+import { searchMealByName } from "../../service/mealAgent";
 
-const RandomMeal = () => {
+const MealDetails = () => {
   const [meal, setMeal] = useState<Meal>({} as Meal);
   const [isLoading, setIsLoading] = useState(false);
+  const { name } = useParams<{ name: string }>();
+
+  console.log(name);
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const resp = await randomMeal();
+      const resp = await searchMealByName(name);
       const rand: APIMeal = (await resp.data).meals[0];
 
-      const randMeal: Meal = {
+      const selectedMeal: Meal = {
         objectId: rand.idMeal,
         name: rand.strMeal,
         category: {
@@ -25,7 +28,9 @@ const RandomMeal = () => {
           description: "",
           thumbImg: "",
         },
-        area: rand.strArea,
+        area: {
+          name: rand.strArea,
+        },
         instrution: rand.strInstructions,
         thumbImg: rand.strMealThumb,
         tags: rand.strTags?.split(","),
@@ -33,36 +38,23 @@ const RandomMeal = () => {
         price: Number((Math.random() * 12.5).toFixed(2)),
       };
 
-      setMeal(randMeal);
+      console.log(selectedMeal);
+
+      setMeal(selectedMeal);
       setIsLoading(false);
     }
 
     fetchData();
-  }, []);
+  }, [name]);
 
   if (isLoading) return <Loading />;
 
   return (
     <>
-      <Summary>
-        <h3>Random Meal</h3>
-        <h1>{meal.name}</h1>
-        <p>
-          Category:{" "}
-          <Link
-            to={`/category/${meal.category?.name}`}
-            style={{ color: "yellow", fontSize: "0.8rem" }}
-          >
-            <span> {meal.category?.name}</span>
-          </Link>
-        </p>
-        <p>Area: {meal.area}</p>
-      </Summary>
-      <div style={{ position: "absolute" }}>
-        <MealCard meal={meal} />
-      </div>
+      <MealSummary meal={meal} topHeader="Meal" />
+      <MealCard meal={meal} />
     </>
   );
 };
 
-export default RandomMeal;
+export default MealDetails;

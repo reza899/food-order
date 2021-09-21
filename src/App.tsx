@@ -7,11 +7,11 @@ import Home from "./pages/Home";
 import Error from "./pages/Error";
 import CategoryDetails from "./pages/Category/CategoryDetails";
 import CategoryList from "./pages/Category/CategoryList";
-import RandomMeal from "./pages/Meal/RandomMeal";
-import AllMeals from "./pages/Meal/AllMeals";
+import RandomMeal from "./pages/Meals/RandomMeal";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
-import MealDetails from "./pages/Meal/MealDetails";
+import MealDetails from "./pages/Meals/MealDetails";
+import AreaList from "./pages/Area/AreaList";
 
 function App() {
   const [isModalShow, setIsModalShow] = useState(false);
@@ -24,9 +24,9 @@ function App() {
       <Switch>
         <Route path="/category/:name" component={CategoryDetails} />
         <Route path="/category" component={CategoryList} />
-        <Route path="/random" component={RandomMeal} />
         <Route path="/meal/:name" component={MealDetails} />
-        <Route path="/meals" component={AllMeals} />
+        <Route path="/area" component={AreaList} />
+        <Route path="/random" component={RandomMeal} />
         <Route path="/error" component={Error} />
         <Route path="/" component={Home} exact />
         <Redirect to="/error" />

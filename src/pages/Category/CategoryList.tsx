@@ -4,12 +4,8 @@ import { MealCategory } from "../../model/meals";
 import { useHistory } from "react-router";
 import Loading from "../../components/UI/Loading";
 import CategoryMealCard from "../../components/UI/Card/CategoryMealCard";
-
-type APICategory = {
-  strCategory: string;
-  strCategoryThumb: string;
-  strCategoryDescription: string;
-};
+import { APICategory } from "../../model/api-meals";
+import CategorySummary from "../../components/UI/Summary/CategorySummary";
 
 const CategoryList = () => {
   const [catList, setCatList] = useState<MealCategory[]>([] as MealCategory[]);
@@ -48,8 +44,11 @@ const CategoryList = () => {
 
   return (
     <>
-      <h1>Category List</h1>
-      <CategoryMealCard mealsCategory={catList} clickHandler={categoryClickHandler} />
+      <CategorySummary topHeader="Category List" />
+      <CategoryMealCard
+        mealsCategory={catList}
+        clickHandler={categoryClickHandler}
+      />
     </>
   );
 };

@@ -11,8 +11,8 @@ const Header = ({ className, onShowCart }: Props) => {
     <StyledHeader className={className}>
       <header>
         <h1>React Meals </h1>
-        <NavLink to="/category">Category</NavLink>
-        <NavLink to="/meals">Meals</NavLink>
+        <NavLink to="/category">Categories</NavLink>
+        <NavLink to="/area">Areas</NavLink>
         <NavLink to="/random">Random</NavLink>
         <HeaderCartButton onClick={onShowCart} />
       </header>

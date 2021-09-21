@@ -7,3 +7,18 @@ export type APIMeal = {
   strMealThumb: string;
   strTags: string;
 };
+
+export type APICategory = {
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+};
+
+export type APIArea = {
+  strArea: string;
+};
+
+export type APIMealsCategory = {
+  strMeal: string;
+  strMealThumb: string;
+};

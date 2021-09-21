@@ -6,7 +6,7 @@ export interface Meal {
   amount?: number;
 
   category?: MealCategory;
-  area?: string;
+  area?: Area;
   instrution?: string;
   thumbImg?: string;
   tags?: string[];
@@ -18,3 +18,6 @@ export interface MealCategory {
   description: string;
 }
 
+export interface Area {
+  name: string;
+}

@@ -26,6 +26,9 @@ const Wrapper = styled.div`
       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     }
   }
+  p.description {
+    padding: 1rem;
+  }
 `;
 
 interface Props {
@@ -42,7 +45,11 @@ const CategoryMealCard = ({ clickHandler, mealsCategory }: Props) => {
             <div key={mealCat.name} className="item">
               <h3 className="header">{mealCat.name}</h3>
               <img src={mealCat.thumbImg} alt={mealCat.name} height={100} />
-              <p>{mealCat.description.slice(0, 100)}...</p>
+              {mealCat.description && (
+                <p className="description">
+                  {mealCat.description.slice(0, 100)}...
+                </p>
+              )}
               <Button onClick={() => clickHandler(mealCat.name.toLowerCase())}>
                 See More...
               </Button>

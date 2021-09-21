@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Loading from "react-loading";
-import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import MealCard from "../../components/UI/Card/MealCard";
 import MealSummary from "../../components/UI/Summary/MealSummary";
+import Summary from "../../components/UI/Summary/Summary";
 import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
-import { searchMealByName } from "../../service/mealAgent";
+import { randomMeal } from "../../service/mealAgent";
 
-const MealDetails = () => {
+const RandomMeal = () => {
   const [meal, setMeal] = useState<Meal>({} as Meal);
   const [isLoading, setIsLoading] = useState(false);
-  const { name: mealName } = useParams<{ name: string }>();
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const resp = await searchMealByName(mealName);
+      const resp = await randomMeal();
       const rand: APIMeal = (await resp.data).meals[0];
 
-      const selectedMeal: Meal = {
+      const randMeal: Meal = {
         objectId: rand.idMeal,
         name: rand.strMeal,
         category: {
@@ -26,7 +26,9 @@ const MealDetails = () => {
           description: "",
           thumbImg: "",
         },
-        area: rand.strArea,
+        area: {
+          name: rand.strArea,
+        },
         instrution: rand.strInstructions,
         thumbImg: rand.strMealThumb,
         tags: rand.strTags?.split(","),
@@ -34,23 +36,21 @@ const MealDetails = () => {
         price: Number((Math.random() * 12.5).toFixed(2)),
       };
 
-      setMeal(selectedMeal);
+      setMeal(randMeal);
       setIsLoading(false);
     }
 
     fetchData();
-  }, [mealName]);
+  }, []);
 
   if (isLoading) return <Loading />;
 
   return (
     <>
-      <MealSummary meal={meal} />
-      <div style={{ position: "absolute" }}>
-        <MealCard meal={meal} />
-      </div>
+      <MealSummary meal={meal} topHeader="Random Meal" />
+      <MealCard meal={meal} />
     </>
   );
 };
 
-export default MealDetails;
+export default RandomMeal;

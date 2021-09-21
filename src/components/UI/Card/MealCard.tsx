@@ -48,12 +48,14 @@ interface Props {
 
 const MealCard = ({ meal }: Props) => {
   return (
-    <Wrapper>
-      <img className="img" src={meal.thumbImg} alt={meal.name} height={500} />
-      <h4>Instruction: </h4>
-      <p className="instruction">{meal.instrution}</p>
-      <p className="tag">Tags: {meal.tags?.map((tag) => `${tag} `)}</p>
-    </Wrapper>
+    <div style={{ position: "absolute" }}>
+      <Wrapper>
+        <img className="img" src={meal.thumbImg} alt={meal.name} height={500} />
+        <h4>Instruction: </h4>
+        <p className="instruction">{meal.instrution}</p>
+        <p className="tag">Tags: {meal.tags?.map((tag) => `${tag} `)}</p>
+      </Wrapper>
+    </div>
   );
 };
 
