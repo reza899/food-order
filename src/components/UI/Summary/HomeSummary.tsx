@@ -1,6 +1,6 @@
-import Summary from "../UI/Summary/Summary";
+import Summary from "./Summary";
 
-const MealsSummary = () => {
+const HomeSummary = () => {
   return (
     <Summary>
       <h1>Delicious Food, Delivered to you!</h1>
@@ -18,4 +18,4 @@ const MealsSummary = () => {
   );
 };
 
-export default MealsSummary;
+export default HomeSummary;

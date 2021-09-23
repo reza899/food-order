@@ -2,15 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  background-color: #4caf50; /* Green */
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font: inherit;
   cursor: pointer;
+  background-color: #8a2b06;
+  border: 1px solid #8a2b06;
+  color: white;
+  padding: 0.25rem 2rem;
+  border-radius: 20px;
+  font-weight: bold;
+
+  &:hover,
+  &:active {
+    background-color: #641e03;
+    border-color: #641e03;
+  }
 `;
 
 interface Props {

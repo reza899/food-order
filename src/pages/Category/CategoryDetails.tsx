@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loading from "react-loading";
 import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
+import CategoryDetailsCard from "../../components/UI/Card/CategoryDetailsCard";
 import CategoryMealCard from "../../components/UI/Card/CategoryMealCard";
 import CategorySummary from "../../components/UI/Summary/CategorySummary";
 import { APIMealsCategory } from "../../model/api-meals";
@@ -74,7 +75,7 @@ const CategoryDetails = () => {
   return (
     <>
       <CategorySummary cat={name} topHeader="Category Details" />
-      <CategoryMealCard
+      <CategoryDetailsCard
         mealsCategory={mealList}
         clickHandler={categoryClickHandler}
       />

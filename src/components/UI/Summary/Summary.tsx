@@ -4,10 +4,12 @@ export const StyledSection = styled.section`
   text-align: center;
   max-width: 45rem;
   width: 90%;
+  min-height: 200px;
   margin: auto;
   margin-top: -10rem;
+  margin-bottom: 2rem;
   position: relative;
-  background-color: #383838;
+  background-color: var(--color-background2);
   color: white;
   border-radius: 14px;
   padding: 1rem;

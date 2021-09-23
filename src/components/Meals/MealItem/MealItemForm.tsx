@@ -1,27 +1,11 @@
 import { useRef } from "react";
 import { FormEvent } from "react";
 import styled from "styled-components";
+import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 
 const StyledForm = styled.form`
   text-align: right;
-
-  & button {
-    font: inherit;
-    cursor: pointer;
-    background-color: #8a2b06;
-    border: 1px solid #8a2b06;
-    color: white;
-    padding: 0.25rem 2rem;
-    border-radius: 20px;
-    font-weight: bold;
-  }
-
-  & button:hover,
-  & button:active {
-    background-color: #641e03;
-    border-color: #641e03;
-  }
 `;
 
 interface Props {
@@ -55,7 +39,7 @@ const MealItemForm = ({ mealItemId, onAddToCart }: Props) => {
         ref={ref}
         label="Price"
       />
-      <button type="submit">Add</button>
+      <Button type="submit">Add</Button>
     </StyledForm>
   );
 };

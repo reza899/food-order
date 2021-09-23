@@ -8,7 +8,7 @@ interface Props {
   topHeader: string;
 }
 
-const MealSummary = ({ meal,topHeader }: Props) => {
+const MealSummary = ({ meal, topHeader }: Props) => {
   return (
     <Summary>
       <h3>{topHeader}</h3>
@@ -22,7 +22,15 @@ const MealSummary = ({ meal,topHeader }: Props) => {
           <span> {meal.category?.name}</span>
         </Link>
       </p>
-      <p>Area: {meal.area?.name}</p>
+      <p>
+        Area:
+        <Link
+          to={`/area/${meal.area?.name}`}
+          style={{ color: "var(--color-4)", fontSize: "0.8rem" }}
+        >
+          <span>{meal.area?.name}</span>
+        </Link>
+      </p>
     </Summary>
   );
 };

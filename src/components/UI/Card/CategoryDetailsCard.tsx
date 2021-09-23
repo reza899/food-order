@@ -12,8 +12,9 @@ const Wrapper = styled.div`
   padding: 2px 16px;
 
   .item {
-    flex-basis: 450px;
+    flex-basis: 350px;
     display: grid;
+    grid-template-columns: repeat(1, 1fr);
     align-items: center;
     justify-items: center;
     margin: 10px 10px;
@@ -26,6 +27,8 @@ const Wrapper = styled.div`
     background-color: #fff;
     border-radius: 14px;
 
+   
+
     &:hover {
       box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
       opacity: 1;
@@ -33,6 +36,7 @@ const Wrapper = styled.div`
   }
   p.description {
     padding: 1rem;
+    grid-column: span 2 / auto;
   }
   img {
     margin: 1rem;
@@ -42,16 +46,16 @@ const Wrapper = styled.div`
   }
 
   .span-col2 {
-    width: 100px;
-    font-size: 12px;
-    font-weight: 300;
-    white-space: nowrap;
-    text-align: center;
-    padding: 4px 0;
-    color: #8a2b06;
-    background-color: #fff;
-  }
-
+      width: 100px;
+      font-size: 12px;
+      font-weight: 300;
+      white-space: nowrap;
+      text-align: center;
+      padding: 4px 0;
+      color: #8a2b06;
+      background-color: #fff;
+    }
+    
   .addbtn {
     width: 100%;
     margin: 1rem;
@@ -63,15 +67,15 @@ interface Props {
   clickHandler: (param: string) => void;
 }
 
-const CategoryMealCard = ({ clickHandler, mealsCategory }: Props) => {
+const CategoryDetailsCard = ({ clickHandler, mealsCategory }: Props) => {
   return (
     <Wrapper>
       {mealsCategory &&
         mealsCategory.map((mealCat) => {
           return (
             <div key={mealCat.name} className="item">
-              <h2 className="header">{mealCat.name}</h2>
               <img src={mealCat.thumbImg} alt={mealCat.name} height={100} />
+              <h3 className="header">{mealCat.name}</h3>
               {mealCat.description && (
                 <p className="description">
                   {mealCat.description.slice(0, 100)}...
@@ -81,8 +85,9 @@ const CategoryMealCard = ({ clickHandler, mealsCategory }: Props) => {
                 className="span-col2"
                 onClick={() => clickHandler(mealCat.name.toLowerCase())}
               >
-                See More
+                More Info
               </Button>
+              <Button className="addbtn">Add</Button>
             </div>
           );
         })}
@@ -90,4 +95,4 @@ const CategoryMealCard = ({ clickHandler, mealsCategory }: Props) => {
   );
 };
 
-export default CategoryMealCard;
+export default CategoryDetailsCard;

@@ -1,5 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 
+:root {
+  --color-0: #03071e;
+  --color-1: #370617;
+  --color-2: #6a040f;
+  --color-3: #9d0208;
+  --color-4: #d00000;
+  --color-5: #dc2f02;
+  --color-6: #e85d04;
+  --color-7: #f48c06;
+  --color-8: #faa307;
+  --color-9: #ffba08;
+  --color-linear: linear-gradient(
+    0deg,
+    rgba(138, 43, 6, 1) 0%,
+    rgba(200, 38, 25, 1) 100%
+  );
+  --color-linear2: linear-gradient(
+    0deg,
+    rgb(46, 13, 13) 0%,
+    rgb(224, 33, 15) 100%
+  );
+  --color-background1: rgba(63, 63, 63, 0.43);
+  --color-background2: #383838;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,5 +36,5 @@ html {
 body {
   margin: 0;
   /* background-color: #3f3f3f; */
-  background-color: rgba(63, 63, 63, 0.43);
+  background-color: var(--color-background1);
 }

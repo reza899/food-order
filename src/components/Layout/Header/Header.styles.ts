@@ -7,7 +7,9 @@ export const StyledHeader = styled("div")`
     left: 0;
     width: 100%;
     height: 5rem;
-    background-color: #8a2b06;
+    /* background-color: #8a2b06; */
+    background: var(--color-linear);
+
     color: white;
     display: flex;
     justify-content: space-between;

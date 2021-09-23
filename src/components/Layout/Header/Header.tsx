@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { StyledDiv, StyledHeader } from "./Header.styles";
 import HeaderCartButton from "./HeaderCartButton";
 import { onLoggedOut } from "../../../store/authSlice";
@@ -13,26 +13,36 @@ interface Props {
 const Header = ({ className, onShowCart }: Props) => {
   const isLoogedIn = useSelector(selectIsLoggedin);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const logoutHandler = () => {
+    dispatch(onLoggedOut());
+    history.replace("/");
+  };
 
   return (
     <StyledHeader className={className}>
       <header>
-        <h1>React Meals </h1>
+        <h1>
+          <Link to="/">Food Order</Link>
+        </h1>
 
         {isLoogedIn && (
           <>
             <NavLink to="/category">Categories</NavLink>
             <NavLink to="/area">Areas</NavLink>
             <NavLink to="/random">Random</NavLink>
-            <Button onClick={() => dispatch(onLoggedOut())}>Logout</Button>
+            <Button onClick={logoutHandler}>Logout</Button>
+            <HeaderCartButton onClick={onShowCart} />
           </>
         )}
         {!isLoogedIn && (
-          <Button>
-            <Link to="/login">Login</Link>
+          <Button style={{ backgroundColor: "white" }}>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              Login
+            </Link>
           </Button>
         )}
-        <HeaderCartButton onClick={onShowCart} />
       </header>
       <StyledDiv>
         <img src="/assets/meals.jpg" alt="a table full of meals" />
