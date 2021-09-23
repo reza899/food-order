@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledHeader = styled("div")`
@@ -32,4 +33,22 @@ export const StyledDiv = styled.div`
     object-fit: cover;
     transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
   }
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  color: wheat;
+  text-decoration: none;
+  margin: 1rem;
+  position: relative;
+
+  &.active {
+    color: #e2ee83;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  color: wheat;
+  text-decoration: none;
+  margin: 1rem;
+  position: relative;
 `;

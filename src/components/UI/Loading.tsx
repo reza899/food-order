@@ -2,7 +2,11 @@ import React from "react";
 import ReactLoading from "react-loading";
 
 const Loading = () => {
-  return <ReactLoading type={"cylon"} width={210} />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <ReactLoading type={"cylon"} width={210} />
+    </div>
+  );
 };
 
 export default Loading;

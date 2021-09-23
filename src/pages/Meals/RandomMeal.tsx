@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Loading from "react-loading";
-import { Link } from "react-router-dom";
+import Loading from "../../components/UI/Loading";
 import MealCard from "../../components/UI/Card/MealCard";
 import MealSummary from "../../components/UI/Summary/MealSummary";
-import Summary from "../../components/UI/Summary/Summary";
 import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
 import { randomMeal } from "../../service/mealAgent";

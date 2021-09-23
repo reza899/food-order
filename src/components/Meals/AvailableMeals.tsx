@@ -51,12 +51,7 @@ const AvailableMeals = () => {
     fetchData();
   }, []);
 
-  if (isLoading)
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Loading />
-      </div>
-    );
+  if (isLoading) return <Loading />;
   return (
     <StyledAvailableMeals>
       <Card>

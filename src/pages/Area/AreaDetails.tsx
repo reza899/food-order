@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Loading from "react-loading";
+import Loading from "../../components/UI/Loading";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
-import CategoryMealCard from "../../components/UI/Card/CategoryMealCard";
+import CategoryDetailsCard from "../../components/UI/Card/CategoryDetailsCard";
 import AreaSummary from "../../components/UI/Summary/AreaSummary";
 import { APIMealsArea } from "../../model/api-meals";
 import { MealCategory } from "../../model/meals";
@@ -48,7 +48,7 @@ const AreaDetails = () => {
   return (
     <>
       <AreaSummary topHeader={name[0].toUpperCase() + name.slice(1)} />
-      <CategoryMealCard
+      <CategoryDetailsCard
         mealsCategory={areaList}
         clickHandler={areaClickHandler}
       />

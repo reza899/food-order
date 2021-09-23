@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loading from "react-loading";
+import Loading from "../../components/UI/Loading";
 import { useHistory } from "react-router-dom";
 import AreaCard from "../../components/UI/Card/AreaCard";
 import AreaSummary from "../../components/UI/Summary/AreaSummary";

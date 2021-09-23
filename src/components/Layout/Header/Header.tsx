@@ -1,15 +1,22 @@
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { StyledDiv, StyledHeader } from "./Header.styles";
+import {
+  StyledDiv,
+  StyledHeader,
+  StyledLink,
+  StyledNavLink,
+} from "./Header.styles";
 import HeaderCartButton from "./HeaderCartButton";
 import { onLoggedOut } from "../../../store/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { selectIsLoggedin } from "../../../store/store";
 import Button from "../../UI/Button";
+import { GiHotMeal } from "react-icons/gi";
 
 interface Props {
   className?: string;
   onShowCart: () => void;
 }
+
 const Header = ({ className, onShowCart }: Props) => {
   const isLoogedIn = useSelector(selectIsLoggedin);
   const dispatch = useDispatch();
@@ -24,14 +31,21 @@ const Header = ({ className, onShowCart }: Props) => {
     <StyledHeader className={className}>
       <header>
         <h1>
-          <Link to="/">Food Order</Link>
+          <StyledLink to="/">
+            <GiHotMeal
+              color="wheat"
+              size="2rem"
+              style={{ verticalAlign: "baseline" }}
+            />{" "}
+            Food Order
+          </StyledLink>
         </h1>
 
         {isLoogedIn && (
           <>
-            <NavLink to="/category">Categories</NavLink>
-            <NavLink to="/area">Areas</NavLink>
-            <NavLink to="/random">Random</NavLink>
+            <StyledNavLink to="/category">Categories</StyledNavLink>
+            <StyledNavLink to="/area">Areas</StyledNavLink>
+            <StyledNavLink to="/random">Random</StyledNavLink>
             <Button onClick={logoutHandler}>Logout</Button>
             <HeaderCartButton onClick={onShowCart} />
           </>

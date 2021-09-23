@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loading from "react-loading";
+import Loading from "../../components/UI/Loading";
 import { useParams } from "react-router";
 import MealCard from "../../components/UI/Card/MealCard";
 import MealSummary from "../../components/UI/Summary/MealSummary";
