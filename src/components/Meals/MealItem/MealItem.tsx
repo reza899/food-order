@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Meal } from "../../../model/meals";
 import { useCartContext } from "../../../store/cart-context";
 import MealItemForm from "./MealItemForm";
+import { useDispatch } from "react-redux";
+import { onAdd } from "../../../store/cartSlice";
 
 const StyledMealItem = styled("li")`
   display: flex;
@@ -32,7 +34,8 @@ interface Props {
   mealItem: Meal;
 }
 const MealItem = ({ className, mealItem }: Props) => {
-  const { addItem } = useCartContext();
+  // const { addItem } = useCartContext();
+  const dispatch = useDispatch();
 
   const { name, description, price, objectId: id } = mealItem;
   const addToCartHandler = (amount: number) => {
@@ -40,7 +43,7 @@ const MealItem = ({ className, mealItem }: Props) => {
       ...mealItem,
       amount: amount,
     };
-    addItem(mealItemSubmitted);
+    dispatch(onAdd(mealItemSubmitted));
   };
   return (
     <StyledMealItem>

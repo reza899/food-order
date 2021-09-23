@@ -1,10 +1,12 @@
 import { Meal } from "../../model/meals";
-import { useCartContext } from "../../store/cart-context";
 import Checkout from "./Checkout";
 import Modal from "../UI/Modal";
 import { StyledCart } from "./Cart.styles";
 import CartItem from "./CartItem";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCartTotalAmount, selectCartItems } from "../../store/store";
+import { onRemove, clear, onAdd } from "../../store/cartSlice";
 
 interface Props {
   className?: string;
@@ -17,8 +19,11 @@ export type SubmittingType = {
 };
 
 const Cart = ({ className, onClose }: Props) => {
-  const { items, totalAmount, addItem, removeItem, clearCart } =
-    useCartContext();
+  // const { items, totalAmount, addItem, removeItem, clearCart } =
+  //   useCartContext();
+  const dispatch = useDispatch();
+  const totalAmount = useSelector(selectCartTotalAmount);
+  const items = useSelector(selectCartItems);
   const [isOrdered, setIsOrdered] = useState(false);
   const [submittingStatus, setSubmittingStatus] = useState({
     submitting: false,
@@ -26,11 +31,11 @@ const Cart = ({ className, onClose }: Props) => {
   });
 
   const cartItemRemoveHandler = (id: string) => {
-    removeItem(id);
+    dispatch(onRemove(id));
   };
 
   const cartItemAddHandler = (item: Meal) => {
-    addItem({ ...item, amount: 1 });
+    dispatch(onAdd({ ...item, amount: 1 }));
   };
 
   const orderConfirmHandler = (val: SubmittingType) => {
@@ -38,7 +43,7 @@ const Cart = ({ className, onClose }: Props) => {
     val.submitting
       ? setSubmittingStatus({ ...submittingStatus, submitting: true })
       : setSubmittingStatus({ didSubmit: true, submitting: false });
-    clearCart();
+    dispatch(clear());
   };
   const orderingModalContent = (
     <>
