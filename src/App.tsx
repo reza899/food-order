@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { CartContextProvider } from "./store/cart-context";
 import "react-toastify/dist/ReactToastify.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
@@ -13,13 +12,13 @@ import Header from "./components/Layout/Header/Header";
 import MealDetails from "./pages/Meals/MealDetails";
 import AreaList from "./pages/Area/AreaList";
 import AreaDetails from "./pages/Area/AreaDetails";
-import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
+import Login from "./pages/Auth/Login";
 
 function App() {
   const [isModalShow, setIsModalShow] = useState(false);
   return (
-    <CartContextProvider>
+    <>
       <ToastContainer position="bottom-right" />
       {isModalShow && <Cart onClose={() => setIsModalShow(false)} />}
       <Header onShowCart={() => setIsModalShow(true)} />
@@ -37,7 +36,7 @@ function App() {
         <Route path="/" component={Home} exact />
         <Redirect to="/error" />
       </Switch>
-    </CartContextProvider>
+    </>
   );
 }
 

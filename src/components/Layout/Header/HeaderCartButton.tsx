@@ -3,13 +3,17 @@ import { useEffect } from "react";
 import { useCartContext } from "../../../store/cart-context";
 import CartIcon from "../../Cart/CartIcon";
 import { Button } from "./HeaderCartButton.styles";
-
+import { useSelector } from "react-redux";
+import { selectCartItems, selectCartTotalAmount } from "../../../store/store";
 interface Props {
   onClick: () => void;
 }
 const HeaderCartButton = ({ onClick }: Props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
-  const { items, totalAmount } = useCartContext();
+  // const { items, totalAmount } = useCartContext();
+
+  const items = useSelector(selectCartItems);
+  const totalAmount = useSelector(selectCartTotalAmount);
 
   useEffect(() => {
     if (items.length === 0) return;

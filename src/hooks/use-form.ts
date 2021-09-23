@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState } from "react";
 import { SubmittingType } from "../components/Cart/Cart";
 import request from "../service/agent";
 import { useCartContext } from "../store/cart-context";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "../store/store";
 
 export type InputType = {
   [name: string]: string;
@@ -19,7 +21,8 @@ const useForm = (
   const [state, setState] = useState<InputType>(initialValue);
   const [error, setError] = useState<ErrorType>({});
 
-  const { items } = useCartContext();
+  // const { items } = useCartContext();
+  const items = useSelector(selectCartItems);
 
   const changeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
