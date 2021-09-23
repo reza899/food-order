@@ -13,6 +13,8 @@ import Header from "./components/Layout/Header/Header";
 import MealDetails from "./pages/Meals/MealDetails";
 import AreaList from "./pages/Area/AreaList";
 import AreaDetails from "./pages/Area/AreaDetails";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 
 function App() {
   const [isModalShow, setIsModalShow] = useState(false);
@@ -29,6 +31,8 @@ function App() {
         <Route path="/area/:name" component={AreaDetails} />
         <Route path="/area" component={AreaList} />
         <Route path="/random" component={RandomMeal} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
         <Route path="/error" component={Error} />
         <Route path="/" component={Home} exact />
         <Redirect to="/error" />
