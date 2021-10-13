@@ -1,8 +1,8 @@
 export interface Meal {
   objectId: string;
   name: string;
-  description: string;
-  price: number;
+  description?: string;
+  price?: number;
   amount?: number;
 
   category?: MealCategory;
@@ -15,7 +15,8 @@ export interface Meal {
 export interface MealCategory {
   name: string;
   thumbImg: string;
-  description: string;
+  objectId?: string;
+  description?: string;
 }
 
 export interface Area {

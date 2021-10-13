@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { Meal } from "../../../model/meals";
+import { selectCartItems } from "../../../store/store";
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,9 +49,17 @@ interface Props {
 }
 
 const MealCard = ({ meal }: Props) => {
+  const items = useSelector(selectCartItems);
+  const amount = items.find((x) => x.objectId === meal.objectId)?.amount;
+
   return (
     <div style={{ position: "absolute" }}>
       <Wrapper>
+        {amount && (
+          <h1>
+            Selected <span style={{ color: "red" }}>{amount}</span> of
+          </h1>
+        )}
         <img className="img" src={meal.thumbImg} alt={meal.name} height={500} />
         <h4>Instruction: </h4>
         <p className="instruction">{meal.instrution}</p>

@@ -6,6 +6,9 @@ import Input from "../../UI/Input";
 
 const StyledForm = styled.form`
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 interface Props {
@@ -37,7 +40,7 @@ const MealItemForm = ({ mealItemId, onAddToCart }: Props) => {
           step: "1",
         }}
         ref={ref}
-        label="Price"
+        label="Amount"
       />
       <Button type="submit">Add</Button>
     </StyledForm>

@@ -28,8 +28,8 @@ const AreaDetails = () => {
       areas.map((area) =>
         areaListArray.push({
           name: area.strMeal,
-          description: "",
           thumbImg: area.strMealThumb,
+          objectId: area.idMeal
         })
       );
 

@@ -19,10 +19,14 @@ const StyledButton = styled.button`
 `;
 
 interface Props {
-  children: React.ReactNode;
   [props: string]: any;
 }
-const Button = ({ children, ...props }: Props) => {
+const Button: React.FC<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
+> = ({ children, ...props }: Props) => {
   return <StyledButton {...props}>{children}</StyledButton>;
 };
 

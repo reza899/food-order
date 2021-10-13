@@ -19,11 +19,13 @@ export type APIArea = {
 };
 
 export type APIMealsCategory = {
+  idMeal: string;
   strMeal: string;
   strMealThumb: string;
 };
 
 export type APIMealsArea = {
+  idMeal: string;
   strMeal: string;
   strMealThumb: string;
 };
