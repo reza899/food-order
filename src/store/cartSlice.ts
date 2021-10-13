@@ -11,52 +11,29 @@ const cartSlice = createSlice({
   initialState: intialCartState,
   reducers: {
     onAdd: (state, action: PayloadAction<Meal>) => {
-      const updatedTotalAmount =
-        state.totalAmount + action.payload.amount! * action.payload.price!;
-      const existingCartItemIndex = state.items.findIndex(
-        (x) => x.objectId === action.payload.objectId
+      const existingItem = state.items.find(
+        (item) => item.objectId === action.payload.objectId
       );
-      const existingCartItem = state.items[existingCartItemIndex];
-      let updatedItems: Meal[];
-      if (existingCartItem) {
-        const updatedItem = {
-          ...existingCartItem,
-          amount: action.payload.amount! + existingCartItem.amount!,
-        };
-        updatedItems = [...state.items];
-        updatedItems[existingCartItemIndex] = updatedItem;
+      if (existingItem) {
+        existingItem.amount! += action.payload.amount!;
       } else {
-        updatedItems = state.items.concat(action.payload);
+        state.items.push(action.payload);
       }
-      return {
-        items: updatedItems,
-        totalAmount: updatedTotalAmount,
-      };
+      state.totalAmount += action.payload.amount! * action.payload.price;
     },
     onRemove: (state, action: PayloadAction<string>) => {
-      const existingItemIndex = state.items.findIndex(
-        (x) => x.objectId === action.payload
-      );
-      const existingItem = state.items[existingItemIndex];
-
-      const updatedTotalAmountRemove = state.totalAmount - existingItem.price;
-      let updatedItemsRemove;
-      if (existingItem.amount === 1) {
-        updatedItemsRemove = state.items.filter(
-          (x) => x.objectId !== action.payload
-        );
+      const existingItem = state.items.find(
+        (item) => item.objectId === action.payload
+      )!;
+      if (existingItem.amount! > 1) {
+        existingItem.amount!--;
       } else {
-        const updatedItem = {
-          ...existingItem,
-          amount: existingItem.amount! - 1,
-        };
-        updatedItemsRemove = [...state.items];
-        updatedItemsRemove[existingItemIndex] = updatedItem;
+        existingItem.amount!--;
+        state.items = state.items.filter(
+          (item) => item.objectId !== action.payload
+        );
       }
-      return {
-        items: updatedItemsRemove,
-        totalAmount: updatedTotalAmountRemove,
-      };
+      state.totalAmount -= existingItem?.price!;
     },
     clear: (state) => {
       return intialCartState;

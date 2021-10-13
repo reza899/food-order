@@ -6,6 +6,7 @@ import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import Loading from "./components/UI/Loading";
 
 const Home = React.lazy(() => import(`./pages/Home`));
 const Error = React.lazy(() => import(`./pages/Error`));
@@ -26,7 +27,7 @@ function App() {
       {isModalShow && <Cart onClose={() => setIsModalShow(false)} />}
       <Header onShowCart={() => setIsModalShow(true)} />
 
-      <Suspense fallback={<p>loader...</p>}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route path="/category/:name" component={CategoryDetails} />
           <Route path="/category" component={CategoryList} />
