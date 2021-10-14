@@ -6,6 +6,10 @@ const Wrapper = styled.div`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   border-radius: 14px;
   background-color: white;
+
+  h1 {
+    text-align: center;
+  }
 `;
 
 const Card: React.FC = ({ children }) => {

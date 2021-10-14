@@ -1,4 +1,4 @@
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   StyledDiv,
   StyledHeader,

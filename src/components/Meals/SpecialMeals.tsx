@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
-import request from "../../service/agent";
+import { randomMeal } from "../../service/mealAgent";
 import Card from "../UI/Card";
 import Loading from "../UI/Loading";
 import MealItem from "./MealItem/MealItem";
@@ -37,15 +38,25 @@ const StyledAvailableMeals = styled.section`
   }
 `;
 
-const AvailableMeals = () => {
+const SpecialMeals = () => {
   const [meals, setMeals] = useState<Meal[] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const randomMeals: Meal[] = [];
     async function fetchData() {
       setIsLoading(true);
-      const data = await request.get("Meals ");
-      setMeals(data.results);
+      for (let i = 0; i < 4; i++) {
+        const resp = await randomMeal();
+        const rand: APIMeal = (await resp.data).meals[0];
+        randomMeals.push({
+          name: rand.strMeal,
+          objectId: rand.idMeal,
+          price: Number((Math.random() * 12.5).toFixed(2)),
+          description: rand.strArea,
+        });
+      }
+      setMeals(randomMeals);
       setIsLoading(false);
     }
     fetchData();
@@ -55,6 +66,7 @@ const AvailableMeals = () => {
   return (
     <StyledAvailableMeals>
       <Card>
+        <h1>Today's Specials</h1>
         <ul>
           {meals?.map((meal) => (
             <MealItem key={meal.objectId} mealItem={meal} />
@@ -65,4 +77,4 @@ const AvailableMeals = () => {
   );
 };
 
-export default AvailableMeals;
+export default SpecialMeals;
