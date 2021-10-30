@@ -28,28 +28,32 @@ export const request = {
   get: <T>(url: string) => mealAxios.get<T>(url).then(responseBody),
 };
 
-//search
-export const searchMealByName = (param: string) =>
-  request.get("https://www.themealdb.com/api/json/v1/1/search.php?s=" + param);
-// export const searchMealByLetter = (param: string) =>
-// //   request.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + param);
-// export const searchMealById = (param: string) =>
-//   request.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + param);
+// //search
+// export const searchMealByName = (param: string) =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/search.php?s=" + param);
+// // export const searchMealByLetter = (param: string) =>
+// // //   request.get("https://www.themealdb.com/api/json/v1/1/search.php?f=" + param);
+// // export const searchMealById = (param: string) =>
+// //   request.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + param);
+
 //random
 export const randomMeal = () =>
   request.get("https://www.themealdb.com/api/json/v1/1/random.php");
-//categories
-export const listMealByCategories = () =>
-  request.get("https://www.themealdb.com/api/json/v1/1/categories.php");
-//list
-export const listAllCategories = () =>
-  request.get("https://www.themealdb.com/api/json/v1/1/list.php?c=list");
-export const listAllArea = () =>
-  request.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
-//filter
-export const filterByCategory = (param: string) =>
-  request.get("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + param);
-export const filterByArea = (param: string) =>
-  request.get("https://www.themealdb.com/api/json/v1/1/filter.php?a=" + param);
+
+// //categories
+// export const listMealByCategories = () =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/categories.php");
+
+// //list
+// // export const listAllCategories = () =>
+// //   request.get("https://www.themealdb.com/api/json/v1/1/list.php?c=list");
+// export const listAllArea = () =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list");
+
+// //filter
+// export const filterByCategory = (param: string) =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + param);
+// export const filterByArea = (param: string) =>
+//   request.get("https://www.themealdb.com/api/json/v1/1/filter.php?a=" + param);
 
 export default request;

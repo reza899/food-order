@@ -6,7 +6,7 @@ import CategoryDetailsCard from "../../components/UI/Card/CategoryDetailsCard";
 import CategorySummary from "../../components/UI/Summary/CategorySummary";
 import { APIMealsCategory } from "../../model/api-meals";
 import { MealCategory } from "../../model/meals";
-import { filterByCategory } from "../../service/mealAgent";
+import { useFilterByCategoryQuery } from "../../service/mealApi";
 
 // const Wrapper = styled.div`
 //   display: flex;
@@ -37,19 +37,17 @@ const CategoryDetails = () => {
   const [mealList, setMealList] = useState<MealCategory[]>(
     [] as MealCategory[]
   );
-  const [isLoading, setIsLoading] = useState(false);
-
+  // const [isLoading, setIsLoading] = useState(false);
   const { name } = useParams<{ name: string }>();
   const history = useHistory();
+  const { isFetching, data } = useFilterByCategoryQuery(name);
 
   useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const resp = await filterByCategory(name);
-      const meals: APIMealsCategory[] = (await resp.data).meals;
+    const meals: APIMealsCategory[] | undefined = data;
 
-      const mealListArray: MealCategory[] = [] as MealCategory[];
+    const mealListArray: MealCategory[] = [] as MealCategory[];
 
+    meals &&
       meals.map((meal) =>
         mealListArray.push({
           objectId: meal.idMeal,
@@ -58,18 +56,14 @@ const CategoryDetails = () => {
         })
       );
 
-      setMealList(mealListArray);
-      setIsLoading(false);
-    }
-
-    fetchData();
-  }, [name]);
+    setMealList(mealListArray);
+  }, [name, data]);
 
   const categoryClickHandler = (categoryName: string) => {
     history.push(`/meal/${categoryName.toLowerCase()}`);
   };
 
-  if (isLoading) return <Loading />;
+  if (isFetching) return <Loading />;
 
   return (
     <>

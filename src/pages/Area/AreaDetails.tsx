@@ -6,45 +6,40 @@ import CategoryDetailsCard from "../../components/UI/Card/CategoryDetailsCard";
 import AreaSummary from "../../components/UI/Summary/AreaSummary";
 import { APIMealsArea } from "../../model/api-meals";
 import { MealCategory } from "../../model/meals";
-import { filterByArea } from "../../service/mealAgent";
+import { useFilterByAreaQuery } from "../../service/mealApi";
 
 const AreaDetails = () => {
   const [areaList, setAreaList] = useState<MealCategory[]>(
     [] as MealCategory[]
   );
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const { name } = useParams<{ name: string }>();
   const history = useHistory();
+  const { isFetching, data } = useFilterByAreaQuery(name);
 
   useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const resp = await filterByArea(name);
-      const areas: APIMealsArea[] = (await resp.data).meals;
+    const areaListArray: MealCategory[] = [];
 
-      const areaListArray: MealCategory[] = [] as MealCategory[];
+    const areas: APIMealsArea[] | undefined = data;
 
+    areas &&
       areas.map((area) =>
         areaListArray.push({
           name: area.strMeal,
           thumbImg: area.strMealThumb,
-          objectId: area.idMeal
+          objectId: area.idMeal,
         })
       );
 
-      setAreaList(areaListArray);
-      setIsLoading(false);
-    }
-
-    fetchData();
-  }, [name]);
+    setAreaList(areaListArray);
+  }, [name, data]);
 
   const areaClickHandler = (areaName: string) => {
     history.push(`/meal/${areaName.toLowerCase()}`);
   };
 
-  if (isLoading) return <Loading />;
+  if (isFetching) return <Loading />;
   return (
     <>
       <AreaSummary topHeader={name[0].toUpperCase() + name.slice(1)} />

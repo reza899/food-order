@@ -5,21 +5,20 @@ import AreaCard from "../../components/UI/Card/AreaCard";
 import AreaSummary from "../../components/UI/Summary/AreaSummary";
 import { APIArea } from "../../model/api-meals";
 import { Area } from "../../model/meals";
-import { listAllArea } from "../../service/mealAgent";
+import { useListAllAreaQuery } from "../../service/mealApi";
 
 const AreaList = () => {
   const [areaList, setAreaList] = useState<Area[]>([] as Area[]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const { isFetching, data } = useListAllAreaQuery();
 
   const history = useHistory();
 
   useEffect(() => {
     const areaList: Area[] = [];
 
-    async function fetchData() {
-      setIsLoading(true);
-      const resp = await listAllArea();
-      const areas: APIArea[] = (await resp.data).meals;
+    if (data) {
+      const areas: APIArea[] = data;
 
       areas.map((cat) =>
         areaList.push({
@@ -28,17 +27,14 @@ const AreaList = () => {
       );
 
       setAreaList(areaList);
-      setIsLoading(false);
     }
-
-    fetchData();
-  }, []);
+  }, [data]);
 
   const categoryClickHandler = (param: string) => {
     history.push(`/area/${param}`);
   };
 
-  if (isLoading) return <Loading />;
+  if (isFetching) return <Loading />;
 
   return (
     <>
