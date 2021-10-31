@@ -7,7 +7,7 @@ import CategorySummary from "../../components/UI/Summary/CategorySummary";
 
 import { APICategory } from "../../model/api-meals";
 import { MealCategory } from "../../model/meals";
-import { useListMealByCategoriesQuery } from "../../service/mealApi";
+import { useListMealByCategoriesQuery } from "../../service/foodApi";
 
 const CategoryList = () => {
   const [catList, setCatList] = useState<MealCategory[]>([] as MealCategory[]);

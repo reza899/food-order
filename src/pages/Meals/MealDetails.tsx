@@ -7,7 +7,7 @@ import MealSummary from "../../components/UI/Summary/MealSummary";
 
 import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
-import { useSearchMealByNameQuery } from "../../service/mealApi";
+import { useSearchMealByNameQuery } from "../../service/foodApi";
 
 const MealDetails = () => {
   const [meal, setMeal] = useState<Meal>({} as Meal);
