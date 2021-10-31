@@ -7,7 +7,7 @@ import AreaSummary from "../../components/UI/Summary/AreaSummary";
 
 import { APIMealsArea } from "../../model/api-meals";
 import { MealCategory } from "../../model/meals";
-import { useFilterByAreaQuery } from "../../service/mealApi";
+import { useFilterByAreaQuery } from "../../service/foodApi";
 
 const AreaDetails = () => {
   const [areaList, setAreaList] = useState<MealCategory[]>(
