@@ -1,9 +1,10 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+
 import { MealCategory } from "../../../model/meals";
-import { selectCartItems } from "../../../store/store";
 import Button from "../Button";
+
+import { selectCartItems } from "../../../store/store";
 import { onAdd } from "../../../store/cartSlice";
 
 const Wrapper = styled.div`

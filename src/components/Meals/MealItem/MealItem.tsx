@@ -1,8 +1,9 @@
-import React from "react";
 import styled from "styled-components";
-import { Meal } from "../../../model/meals";
-import MealItemForm from "./MealItemForm";
 import { useDispatch } from "react-redux";
+
+import MealItemForm from "./MealItemForm";
+
+import { Meal } from "../../../model/meals";
 import { onAdd } from "../../../store/cartSlice";
 
 const StyledMealItem = styled("li")`
@@ -33,7 +34,6 @@ interface Props {
   mealItem: Meal;
 }
 const MealItem = ({ className, mealItem }: Props) => {
-  // const { addItem } = useCartContext();
   const dispatch = useDispatch();
 
   const { name, description, price, objectId: id } = mealItem;

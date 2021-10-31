@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+
 import { Meal } from "../../model/meals";
 
 const StyledLi = styled.li`

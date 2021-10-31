@@ -1,13 +1,14 @@
 import React, { Suspense, useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Cart from "./components/Cart/Cart";
-import Header from "./components/Layout/Header/Header";
+import { ToastContainer } from "react-toastify";
+
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import Cart from "./components/Cart/Cart";
+import Header from "./components/Layout/Header/Header";
 import Loading from "./components/UI/Loading";
-import PrivateRoute from "./util/PrivateRoute";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = React.lazy(() => import(`./pages/Home`));
 const Error = React.lazy(() => import(`./pages/Error`));

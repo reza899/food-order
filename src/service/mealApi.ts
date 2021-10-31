@@ -10,7 +10,7 @@ import {
 export const foodApi = createApi({
   reducerPath: "foodApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://www.themealdb.com/api/json/v1/1/",
+    baseUrl: process.env.REACT_APP_THEMEALDB_URL,
   }),
   endpoints: (builder) => ({
     searchMealByName: builder.query<APIMeal, string>({

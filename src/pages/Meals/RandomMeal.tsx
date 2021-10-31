@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
+
 import Loading from "../../components/UI/Loading";
 import MealCard from "../../components/UI/Card/MealCard";
 import MealSummary from "../../components/UI/Summary/MealSummary";
+
 import { APIMeal } from "../../model/api-meals";
 import { Meal } from "../../model/meals";
 import { randomMeal } from "../../service/mealAgent";

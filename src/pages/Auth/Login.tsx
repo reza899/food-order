@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { onLoggedIn } from "../../store/authSlice";
-import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useHistory } from "react-router";
-import { StyledForm } from "./Form.styles";
-import Button from "../../components/UI/Button";
-import { useLoginMutation } from "../../service/authApi";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import queryString from "query-string";
+
+import Button from "../../components/UI/Button";
 import Loading from "../../components/UI/Loading";
-import { Link } from "react-router-dom";
+
+import { onLoggedIn } from "../../store/authSlice";
+import { useLoginMutation } from "../../service/authApi";
+
+import { StyledForm } from "./Form.styles";
 
 const Login = () => {
   const history = useHistory();

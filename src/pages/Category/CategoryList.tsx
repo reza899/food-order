@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { MealCategory } from "../../model/meals";
-import { useHistory } from "react-router";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import Loading from "../../components/UI/Loading";
 import CategoryMealCard from "../../components/UI/Card/CategoryMealCard";
-import { APICategory } from "../../model/api-meals";
 import CategorySummary from "../../components/UI/Summary/CategorySummary";
+
+import { APICategory } from "../../model/api-meals";
+import { MealCategory } from "../../model/meals";
 import { useListMealByCategoriesQuery } from "../../service/mealApi";
 
 const CategoryList = () => {
   const [catList, setCatList] = useState<MealCategory[]>([] as MealCategory[]);
-  // const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
   const { isFetching, data } = useListMealByCategoriesQuery();

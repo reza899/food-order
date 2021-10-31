@@ -1,10 +1,12 @@
-import React from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import { useFormik } from "formik";
+
 import Button from "../../components/UI/Button";
-import { StyledForm } from "./Form.styles";
 import Loading from "../../components/UI/Loading";
+
+import { StyledForm } from "./Form.styles";
+
 import { useRegisterMutation } from "../../service/authApi";
 import { RegisterForm } from "../../model/auth";
 
@@ -37,10 +39,7 @@ const Register = () => {
         email: values.email,
       };
       try {
-        const result = await register(registerInfo);
-        // if ("data" in result) {
-        //   history.replace("/");
-        // }
+        await register(registerInfo);
       } catch (err) {
         console.log(err);
       }

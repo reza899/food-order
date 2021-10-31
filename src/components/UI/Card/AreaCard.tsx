@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+
 import { Area } from "../../../model/meals";
 import Button from "../Button";
 

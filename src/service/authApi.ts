@@ -5,7 +5,7 @@ import { RootState } from "../store/store";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://parseapi.back4app.com/",
+    baseUrl: process.env.REACT_APP_API_URL,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.user?.sessionToken;
       if (token) {
@@ -45,4 +45,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation,useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation } = authApi;

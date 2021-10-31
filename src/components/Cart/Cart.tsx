@@ -1,17 +1,20 @@
-import { Meal } from "../../model/meals";
-import Checkout from "./Checkout";
-import Modal from "../UI/Modal";
-import { StyledCart } from "./Cart.styles";
-import CartItem from "./CartItem";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+import Checkout from "./Checkout";
+import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
+
+import { StyledCart } from "./Cart.styles";
+
+import { Meal } from "../../model/meals";
 import {
   selectCartTotalAmount,
   selectCartItems,
   selectIsLoggedin,
 } from "../../store/store";
 import { onRemove, clear, onAdd } from "../../store/cartSlice";
-import { Link } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -24,8 +27,6 @@ export type SubmittingType = {
 };
 
 const Cart = ({ className, onClose }: Props) => {
-  // const { items, totalAmount, addItem, removeItem, clearCart } =
-  //   useCartContext();
   const dispatch = useDispatch();
   const totalAmount = useSelector(selectCartTotalAmount);
   const items = useSelector(selectCartItems);

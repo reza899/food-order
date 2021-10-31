@@ -1,8 +1,9 @@
-import React from "react";
 import styled from "styled-components";
-import { MealCategory } from "../../../model/meals";
+
 import Button from "../Button";
 import { FaArrowCircleRight } from "react-icons/fa";
+
+import { MealCategory } from "../../../model/meals";
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,16 +42,6 @@ const Wrapper = styled.div`
     justify-self: stretch;
     min-height: 250px;
   }
-
-  /* .span-col2 {
-    width: 100px;
-    font-size: 16px;
-    white-space: nowrap;
-    text-align: center;
-    padding: 4px 0;
-    color: #8a2b06;
-    background-color: #fff;
-  } */
 
   .addbtn {
     width: 100%;

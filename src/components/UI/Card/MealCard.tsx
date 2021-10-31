@@ -1,6 +1,7 @@
-import React from "react";
 import { useSelector } from "react-redux";
+
 import styled from "styled-components";
+
 import { Meal } from "../../../model/meals";
 import { selectCartItems } from "../../../store/store";
 

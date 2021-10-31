@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import CartIcon from "../../Cart/CartIcon";
-import { Button } from "./HeaderCartButton.styles";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
+import CartIcon from "../../Cart/CartIcon";
+
 import { selectCartItems, selectCartTotalAmount } from "../../../store/store";
+
+import { Button } from "./HeaderCartButton.styles";
+
 interface Props {
   onClick: () => void;
 }

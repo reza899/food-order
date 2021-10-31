@@ -1,10 +1,11 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Meal } from "../../../model/meals";
-import Summary from "./Summary";
 import { useDispatch } from "react-redux";
-import { onAdd } from "../../../store/cartSlice";
+
+import Summary from "./Summary";
 import MealItemForm from "../../Meals/MealItem/MealItemForm";
+
+import { Meal } from "../../../model/meals";
+import { onAdd } from "../../../store/cartSlice";
 
 interface Props {
   meal: Meal;

@@ -1,13 +1,13 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { APIMeal } from "../../model/api-meals";
-import { Meal } from "../../model/meals";
-import { randomMeal } from "../../service/mealAgent";
+
 import Card from "../UI/Card";
 import Loading from "../UI/Loading";
 import MealItem from "./MealItem/MealItem";
+
+import { Meal } from "../../model/meals";
+import { APIMeal } from "../../model/api-meals";
+import { randomMeal } from "../../service/mealAgent";
 
 const StyledAvailableMeals = styled.section`
   max-width: 60rem;

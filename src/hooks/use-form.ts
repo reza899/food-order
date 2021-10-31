@@ -1,7 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
-import { SubmittingType } from "../components/Cart/Cart";
-import request from "../service/agent";
 import { useSelector } from "react-redux";
+
+import { SubmittingType } from "../components/Cart/Cart";
+
+import request from "../service/agent";
 import { selectCartItems } from "../store/store";
 
 export type InputType = {

@@ -1,16 +1,19 @@
 import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import HeaderCartButton from "./HeaderCartButton";
+import Button from "../../UI/Button";
+
+import { GiHotMeal } from "react-icons/gi";
 import {
   StyledDiv,
   StyledHeader,
   StyledLink,
   StyledNavLink,
 } from "./Header.styles";
-import HeaderCartButton from "./HeaderCartButton";
-import { onLoggedOut } from "../../../store/authSlice";
-import { useSelector, useDispatch } from "react-redux";
+
 import { selectIsLoggedin } from "../../../store/store";
-import Button from "../../UI/Button";
-import { GiHotMeal } from "react-icons/gi";
+import { onLoggedOut } from "../../../store/authSlice";
 
 interface Props {
   className?: string;

@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import { FormEvent } from "react";
+import { useRef, FormEvent } from "react";
 import styled from "styled-components";
+
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 
