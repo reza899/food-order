@@ -7,6 +7,7 @@ import Header from "./components/Layout/Header/Header";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import Loading from "./components/UI/Loading";
+import PrivateRoute from "./util/PrivateRoute";
 
 const Home = React.lazy(() => import(`./pages/Home`));
 const Error = React.lazy(() => import(`./pages/Error`));
@@ -29,16 +30,19 @@ function App() {
 
       <Suspense fallback={<Loading />}>
         <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/error" component={Error} />
           <Route path="/category/:name" component={CategoryDetails} />
           <Route path="/category" component={CategoryList} />
           <Route path="/meal/:name" component={MealDetails} />
           <Route path="/area/:name" component={AreaDetails} />
           <Route path="/area" component={AreaList} />
           <Route path="/random" component={RandomMeal} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/error" component={Error} />
-          <Route path="/" component={Home} exact />
+          {/* <PrivateRoute>
+            <Switch></Switch>
+          </PrivateRoute> */}
           <Redirect to="/error" />
         </Switch>
       </Suspense>

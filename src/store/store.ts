@@ -18,6 +18,7 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 
 export const selectIsLoggedin = (state: RootState) => state.auth.isLoggedIn;
+export const selectCurrentUser = (state: RootState) => state.auth.user;
 export const selectCartItems = (state: RootState) => state.cart.items;
 export const selectCartTotalAmount = (state: RootState) =>
   state.cart.totalAmount;

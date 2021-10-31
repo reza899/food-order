@@ -70,10 +70,9 @@ const Login = () => {
           <div>{formik.errors.password}</div>
         ) : null}
         <br />
-        <Button type="submit">Submit</Button>
-        <p>
-          No account?</p>
-          <Link to="/register"> Register </Link>        
+        <Button type="submit">Log In</Button>
+        <p>No account?</p>
+        <Link to="/register"> Register </Link>
       </StyledForm>
     </>
   );
