@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { authApi } from "../service/authApi";
 import { foodApi } from "../service/mealApi";
 import authSlice from "./authSlice";
 import cartSlice from "./cartSlice";
@@ -8,12 +9,13 @@ const store = configureStore({
     auth: authSlice,
     cart: cartSlice,
     [foodApi.reducerPath]: foodApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(foodApi.middleware),
+    getDefaultMiddleware().concat([foodApi.middleware, authApi.middleware]),
 });
 
-type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 
 export const selectIsLoggedin = (state: RootState) => state.auth.isLoggedIn;
 export const selectCartItems = (state: RootState) => state.cart.items;

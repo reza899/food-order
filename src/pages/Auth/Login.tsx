@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { onLoggedIn } from "../../store/authSlice";
 import * as Yup from "yup";
@@ -6,6 +6,10 @@ import { useFormik } from "formik";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import Button from "../../components/UI/Button";
+import { useLoginMutation } from "../../service/authApi";
+import queryString from "query-string";
+import { User } from "../../model/auth";
+import Loading from "../../components/UI/Loading";
 
 const StyledForm = styled.form`
   display: flex;
@@ -38,6 +42,8 @@ const StyledForm = styled.form`
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -45,18 +51,29 @@ const Login = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .min(5, "Must be 5 charachters or more")
+        .min(3, "Must be 3 charachters or more")
         .required("Username is Required!"),
       password: Yup.string()
-        .min(5, "Must be 5 charachters or more")
+        .min(3, "Must be 3 charachters or more")
         .required("password is Required!"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      dispatch(onLoggedIn());
-      history.replace("/");
+    onSubmit: async (values) => {
+      const params = queryString.stringify(values);
+      try {
+        const result = await login(params);
+
+        if ("data" in result) {
+          console.log(result.data);
+          dispatch(onLoggedIn(result.data));
+          history.replace("/");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     },
   });
+
+  if (isLoading) return <Loading />;
 
   return (
     <>
