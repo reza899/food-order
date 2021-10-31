@@ -9,3 +9,9 @@ export interface User {
   sessionToken: string;
   email?: string;
 }
+
+export interface RegisterForm {
+  username: string;
+  password: string;
+  email: string;
+}

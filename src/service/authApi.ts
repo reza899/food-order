@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User } from "../model/auth";
+import { RegisterForm, User } from "../model/auth";
 import { RootState } from "../store/store";
 
 export const authApi = createApi({
@@ -31,7 +31,18 @@ export const authApi = createApi({
         },
       }),
     }),
+    register: builder.mutation<User, RegisterForm>({
+      query: (cred) => ({
+        url: `/classes/_User`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Parse-Revocable-Session": "1",
+        },
+        body: cred,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation,useRegisterMutation } = authApi;

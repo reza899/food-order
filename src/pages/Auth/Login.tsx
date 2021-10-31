@@ -4,40 +4,12 @@ import { onLoggedIn } from "../../store/authSlice";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useHistory } from "react-router";
-import styled from "styled-components";
+import { StyledForm } from "./Form.styles";
 import Button from "../../components/UI/Button";
 import { useLoginMutation } from "../../service/authApi";
 import queryString from "query-string";
-import { User } from "../../model/auth";
 import Loading from "../../components/UI/Loading";
-
-const StyledForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  max-width: 45rem;
-  width: 90%;
-  min-height: 200px;
-  margin: auto;
-  margin-top: -10rem;
-  margin-bottom: 2rem;
-  position: relative;
-  background-color: var(--color-background2);
-  color: white;
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
-
-  input {
-    width: 10rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font: inherit;
-    padding-left: 0.5rem;
-  }
-`;
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const history = useHistory();
@@ -99,6 +71,9 @@ const Login = () => {
         ) : null}
         <br />
         <Button type="submit">Submit</Button>
+        <p>
+          No account?</p>
+          <Link to="/register"> Register </Link>        
       </StyledForm>
     </>
   );
