@@ -18,7 +18,7 @@ interface Props {
 }
 
 const Header = ({ className, onShowCart }: Props) => {
-  const isLoogedIn = useSelector(selectIsLoggedin);
+  const isLogedIn = useSelector(selectIsLoggedin);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,21 +41,21 @@ const Header = ({ className, onShowCart }: Props) => {
           </StyledLink>
         </h1>
 
-        {isLoogedIn && (
-          <>
-            <StyledNavLink to="/category">Categories</StyledNavLink>
-            <StyledNavLink to="/area">Areas</StyledNavLink>
-            <StyledNavLink to="/random">Random</StyledNavLink>
-            <Button onClick={logoutHandler}>Logout</Button>
-            <HeaderCartButton onClick={onShowCart} />
-          </>
-        )}
-        {!isLoogedIn && (
+        <>
+          <StyledNavLink to="/category">Categories</StyledNavLink>
+          <StyledNavLink to="/area">Areas</StyledNavLink>
+          <StyledNavLink to="/random">Random</StyledNavLink>
+          <HeaderCartButton onClick={onShowCart} />
+        </>
+
+        {!isLogedIn ? (
           <Button style={{ backgroundColor: "white" }}>
             <Link to="/login" style={{ textDecoration: "none" }}>
               Login
             </Link>
           </Button>
+        ) : (
+          <Button onClick={logoutHandler}>Logout</Button>
         )}
       </header>
       <StyledDiv>

@@ -5,8 +5,13 @@ import { StyledCart } from "./Cart.styles";
 import CartItem from "./CartItem";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartTotalAmount, selectCartItems } from "../../store/store";
+import {
+  selectCartTotalAmount,
+  selectCartItems,
+  selectIsLoggedin,
+} from "../../store/store";
 import { onRemove, clear, onAdd } from "../../store/cartSlice";
+import { Link } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -24,6 +29,7 @@ const Cart = ({ className, onClose }: Props) => {
   const dispatch = useDispatch();
   const totalAmount = useSelector(selectCartTotalAmount);
   const items = useSelector(selectCartItems);
+  const isLoggedIn = useSelector(selectIsLoggedin);
   const [isOrdered, setIsOrdered] = useState(false);
   const [submittingStatus, setSubmittingStatus] = useState({
     submitting: false,
@@ -64,7 +70,7 @@ const Cart = ({ className, onClose }: Props) => {
       {isOrdered && (
         <Checkout onClose={onClose} onConfirm={orderConfirmHandler} />
       )}
-      {!isOrdered && (
+      {!isOrdered && isLoggedIn ? (
         <div className="actions">
           <button className="button--alt" onClick={onClose}>
             Cancel
@@ -75,6 +81,13 @@ const Cart = ({ className, onClose }: Props) => {
             </button>
           )}
         </div>
+      ) : (
+        <h3>
+          First, Please
+          <Link to="/login" onClick={onClose}>
+            Login
+          </Link>
+        </h3>
       )}
     </>
   );
