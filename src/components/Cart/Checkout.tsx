@@ -1,12 +1,12 @@
-import useForm from "../../hooks/use-form";
-import { SubmittingType } from "./Cart";
+import useCartForm from "../../hooks/useCartForm";
+import { CartSubmitting } from "../../hooks/useCartForm";
 
 import { Form } from "./Checkout.styles";
 
 interface Props {
   className?: string;
   onClose?: () => void;
-  onConfirm: (val: SubmittingType) => void;
+  onConfirm: (val: CartSubmitting) => void;
 }
 
 const Checkout = ({ onClose, className, onConfirm }: Props) => {
@@ -15,13 +15,12 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
     error,
     submitHandler,
     changeInputHandler: onChange,
-  } = useForm(
+  } = useCartForm(
     {
       name: "",
       street: "",
       postalcode: "",
     },
-    () => console.log(values),
     onConfirm
   );
 

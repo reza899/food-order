@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 
 const Axios = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL + "/classes/",
 });
 
 //Interceptors Request Config

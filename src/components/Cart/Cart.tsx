@@ -15,16 +15,14 @@ import {
   selectIsLoggedin,
 } from "../../store/store";
 import { onRemove, clear, onAdd } from "../../store/cartSlice";
+import { CartSubmitting } from "../../hooks/useCartForm";
 
 interface Props {
   className?: string;
   onClose: () => void;
 }
 
-export type SubmittingType = {
-  submitting: boolean;
-  didSubmit: boolean;
-};
+
 
 const Cart = ({ className, onClose }: Props) => {
   const dispatch = useDispatch();
@@ -45,7 +43,7 @@ const Cart = ({ className, onClose }: Props) => {
     dispatch(onAdd({ ...item, amount: 1 }));
   };
 
-  const orderConfirmHandler = (val: SubmittingType) => {
+  const orderConfirmHandler = (val: CartSubmitting) => {
     console.log(val);
     val.submitting
       ? setSubmittingStatus({ ...submittingStatus, submitting: true })

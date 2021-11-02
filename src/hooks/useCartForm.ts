@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
-
-import { SubmittingType } from "../components/Cart/Cart";
+import { Meal } from "../model/meals";
 
 import request from "../service/agent";
 import { selectCartItems } from "../store/store";
@@ -14,15 +13,18 @@ type ErrorType = {
   [key: string]: string;
 };
 
-const useForm = (
+export type CartSubmitting = {
+  submitting: boolean;
+  didSubmit: boolean;
+};
+
+const useCartForm = (
   initialValue: InputType,
-  submitFn: () => void,
-  onConfirm: (val: SubmittingType) => void
+  onConfirm: (val: CartSubmitting) => void
 ) => {
   const [state, setState] = useState<InputType>(initialValue);
   const [error, setError] = useState<ErrorType>({});
 
-  // const { items } = useCartContext();
   const items = useSelector(selectCartItems);
 
   const changeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +35,6 @@ const useForm = (
 
   const submitHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    submitFn?.();
     const errorContainer: ErrorType = {};
     for (let key in state) {
       if (!state[key]) errorContainer[key] = `${key} cannot be null`;
@@ -46,7 +47,7 @@ const useForm = (
       setError({});
     }
 
-    const orderedItems: any[] = [];
+    const orderedItems: Omit<Meal, "objectId">[] = [];
     for (let i in items)
       orderedItems.push({
         name: items[i].name,
@@ -63,7 +64,6 @@ const useForm = (
       let newState: InputType = {};
       for (let i in state) {
         newState[i] = "";
-        console.log(i);
       }
       setState(newState);
     }
@@ -74,4 +74,4 @@ const useForm = (
   return { state, error, submitHandler, changeInputHandler };
 };
 
-export default useForm;
+export default useCartForm;
