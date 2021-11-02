@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import CartIcon from "../../Cart/CartIcon";
+import { HiShoppingCart } from "react-icons/hi";
 
 import { selectCartItems, selectCartTotalAmount } from "../../../store/store";
 
@@ -36,10 +36,8 @@ const HeaderCartButton = ({ onClick }: Props) => {
         onClick={onClick}
         className={`button ${btnIsHighlighted ? "bump" : ""}`}
       >
-        <span className="icon">
-          <CartIcon />
-        </span>
-        <span>Your Cart</span>
+        <HiShoppingCart size="20" />
+        {/* <span>Your Cart</span> */}
         <span className="badge">
           {items.reduce((total, cur) => {
             return total + cur.amount!;

@@ -4,17 +4,17 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   font: inherit;
   cursor: pointer;
-  background-color: #8a2b06;
-  border: 1px solid #8a2b06;
+  background-color: var(--color-7);
+  border: 1px solid var(--color-6);
   color: white;
   padding: 0.25rem 2rem;
-  border-radius: 20px;
+  border-radius: 10px;
   font-weight: bold;
 
   &:hover,
   &:active {
-    background-color: #641e03;
-    border-color: #641e03;
+    background-color: var(--color-9);
+    border-color: var(--color-8);
   }
 `;
 

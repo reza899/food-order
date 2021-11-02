@@ -11,18 +11,14 @@
   --color-7: #f48c06;
   --color-8: #faa307;
   --color-9: #ffba08;
-  --color-linear: linear-gradient(
-    0deg,
-    rgba(138, 43, 6, 1) 0%,
-    rgba(200, 38, 25, 1) 100%
-  );
+  --color-linear: linear-gradient(0deg, #ffba08 0%, rgba(200, 38, 25, 1) 100%);
   --color-linear2: linear-gradient(
     0deg,
     rgb(46, 13, 13) 0%,
     rgb(224, 33, 15) 100%
   );
   --color-background1: rgba(63, 63, 63, 0.43);
-  --color-background2: #383838;
+  --color-background2: #bd2615c4;
 }
 
 * {

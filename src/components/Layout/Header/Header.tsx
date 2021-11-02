@@ -10,6 +10,7 @@ import {
   StyledHeader,
   StyledLink,
   StyledNavLink,
+  StyledSpan,
 } from "./Header.styles";
 
 import { selectIsLoggedin } from "../../../store/store";
@@ -32,37 +33,32 @@ const Header = ({ className, onShowCart }: Props) => {
 
   return (
     <StyledHeader className={className}>
-      <header>
-        <h1>
-          <StyledLink to="/">
-            <GiHotMeal
-              color="wheat"
-              size="2rem"
-              style={{ verticalAlign: "baseline" }}
-            />{" "}
-            Food Order
-          </StyledLink>
-        </h1>
+      <nav>
+        <StyledLink to="/">
+          <GiHotMeal
+            color="wheat"
+            size="2rem"
+            style={{ verticalAlign: "baseline" }}
+          />
+          <h1>Food Order</h1>
+        </StyledLink>
 
-        <>
+        <div className="links">
           <StyledNavLink to="/category">Categories</StyledNavLink>
           <StyledNavLink to="/area">Areas</StyledNavLink>
           <StyledNavLink to="/random">Random</StyledNavLink>
-          <HeaderCartButton onClick={onShowCart} />
-        </>
 
-        {!isLogedIn ? (
-          <Button style={{ backgroundColor: "white" }}>
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              Login
-            </Link>
-          </Button>
-        ) : (
-          <Button onClick={logoutHandler}>Logout</Button>
-        )}
-      </header>
+          {!isLogedIn ? (
+            <StyledNavLink to="/login">Login</StyledNavLink>
+          ) : (
+            <StyledSpan onClick={logoutHandler}>Logout</StyledSpan>
+          )}
+        </div>
+        <HeaderCartButton onClick={onShowCart} />
+      </nav>
       <StyledDiv>
-        <img src="/assets/meals.jpg" alt="a table full of meals" />
+        <img src="/assets/meals.png" alt="a table full of meals" />
+        {/*  */}
       </StyledDiv>
     </StyledHeader>
   );

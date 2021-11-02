@@ -11,7 +11,7 @@ export const StyledSection = styled.section`
   position: relative;
   background-color: var(--color-background2);
   color: white;
-  border-radius: 14px;
+  border-radius: 20px;
   padding: 1rem;
   box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
 

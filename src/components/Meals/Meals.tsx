@@ -1,5 +1,5 @@
-import SpecialMeals from "./SpecialMeals";
 import HomeSummary from "../UI/Summary/HomeSummary";
+import SpecialMeals from "./SpecialMeals";
 
 const Meals = () => {
   return (

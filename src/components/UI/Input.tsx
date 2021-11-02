@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const StyledInput = styled.div`
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
   margin-bottom: 0.5rem;
 
@@ -14,11 +15,12 @@ const StyledInput = styled.div`
   }
 
   & input {
-    width: 3rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font: inherit;
-    padding-left: 0.5rem;
+    outline: none;
+    padding: 8px 2px;
+    border-radius: 10px;
+    color: black;
+    margin: 0;
+    text-align: center;
   }
 `;
 

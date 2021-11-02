@@ -1,22 +1,24 @@
 import styled from "styled-components";
 
 export const Button = styled.div`
- .button{ cursor: pointer;
-  font: inherit;
-  border: none;
-  background-color: #4d1601;
-  color: white;
-  padding: 0.75rem 3rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 25px;
-  font-weight: bold;
- }
+  .button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: var(--color-6);
+    color: white;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-left: 0.5rem;
+  }
 
   .button:hover,
   .button:active {
-    background-color: #2c0d00;
+    background-color: var(--color-5);
   }
 
   .icon {
@@ -26,7 +28,7 @@ export const Button = styled.div`
   }
 
   .badge {
-    background-color: #b94517;
+    background-color: var(--color-3);
     padding: 0.25rem 1rem;
     border-radius: 25px;
     margin-left: 1rem;
@@ -35,7 +37,7 @@ export const Button = styled.div`
 
   .button:hover .badge,
   .button:active .badge {
-    background-color: #92320c;
+    background-color: var(--color-2);
   }
 
   .bump {
