@@ -1,5 +1,7 @@
+import { useSelector } from "react-redux";
 import useCartForm from "../../hooks/useCartForm";
 import { CartSubmitting } from "../../hooks/useCartForm";
+import { selectCartItems } from "../../store/store";
 
 import { Form } from "./Checkout.styles";
 
@@ -10,6 +12,8 @@ interface Props {
 }
 
 const Checkout = ({ onClose, className, onConfirm }: Props) => {
+  const items = useSelector(selectCartItems);
+
   const {
     state: values,
     error,
@@ -26,6 +30,15 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
 
   return (
     <div>
+      <ul>
+        {items.map((item) => {
+          return (
+            <li key={item.objectId}>
+              {item.amount} x {item.name} ({item.price})
+            </li>
+          );
+        })}
+      </ul>
       <Form onSubmit={submitHandler} className={className}>
         <div className="control">
           <label htmlFor="name">Name:</label>
@@ -67,9 +80,6 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
           <div className="actions">
             <button className="button--alt" type="button" onClick={onClose}>
               Cancel
-            </button>
-            <button className="button--alt" type="reset">
-              Reset
             </button>
             <button className="submit">Confirm</button>
           </div>

@@ -22,8 +22,6 @@ interface Props {
   onClose: () => void;
 }
 
-
-
 const Cart = ({ className, onClose }: Props) => {
   const dispatch = useDispatch();
   const totalAmount = useSelector(selectCartTotalAmount);
@@ -52,41 +50,44 @@ const Cart = ({ className, onClose }: Props) => {
   };
   const orderingModalContent = (
     <>
-      <ul className="cart-items">
-        {items.map((item) => (
-          <CartItem
-            key={item.objectId}
-            item={item}
-            onRemove={cartItemRemoveHandler.bind(null, item.objectId)}
-            onAdd={cartItemAddHandler.bind(null, item)}
-          />
-        ))}
-      </ul>
-      <div className="total">
-        <span>Total Amount</span>
-        <span>{`$${totalAmount.toFixed(2)}`}</span>
-      </div>
-      {isOrdered && (
-        <Checkout onClose={onClose} onConfirm={orderConfirmHandler} />
-      )}
-      {!isOrdered && isLoggedIn ? (
-        <div className="actions">
-          <button className="button--alt" onClick={onClose}>
-            Cancel
-          </button>
-          {items.length > 0 && (
-            <button className="button" onClick={() => setIsOrdered(true)}>
-              Order
-            </button>
+      {!isOrdered ? (
+        <>
+          <ul className="cart-items">
+            {items.map((item) => (
+              <CartItem
+                key={item.objectId}
+                item={item}
+                onRemove={cartItemRemoveHandler.bind(null, item.objectId)}
+                onAdd={cartItemAddHandler.bind(null, item)}
+              />
+            ))}
+          </ul>
+          <div className="total">
+            <span>Total Amount</span>
+            <span>{`$${totalAmount.toFixed(2)}`}</span>
+          </div>
+          {!isOrdered && isLoggedIn ? (
+            <div className="actions">
+              <button className="button--alt" onClick={onClose}>
+                Cancel
+              </button>
+              {items.length > 0 && (
+                <button className="button" onClick={() => setIsOrdered(true)}>
+                  Order
+                </button>
+              )}
+            </div>
+          ) : (
+            <h3>
+              First, Please
+              <Link to="/login" onClick={onClose}>
+                Login
+              </Link>
+            </h3>
           )}
-        </div>
+        </>
       ) : (
-        <h3>
-          First, Please
-          <Link to="/login" onClick={onClose}>
-            Login
-          </Link>
-        </h3>
+        <Checkout onClose={onClose} onConfirm={orderConfirmHandler} />
       )}
     </>
   );
