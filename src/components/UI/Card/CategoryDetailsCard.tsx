@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  background-color: darkgray;
   padding: 2px 16px;
 
   .cartItem {
@@ -52,10 +51,12 @@ const Wrapper = styled.div`
     grid-column: span 2 / auto;
   }
   img {
-    margin: 1rem;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 100px;
     border-radius: 10px;
     justify-self: stretch;
-    min-height: 250px;
   }
 
   .span-col2 {
@@ -105,7 +106,7 @@ const CategoryDetailsCard = ({ clickHandler, mealsCategory }: Props) => {
           return (
             <div key={mealCat.name} className="item">
               {amount && <div className="cartItem">selected {amount} of</div>}
-              <img src={mealCat.thumbImg} alt={mealCat.name} height={100} />
+              <img src={mealCat.thumbImg} alt={mealCat.name} />
               <h3 className="header">{mealCat.name}</h3>
               {mealCat.description && (
                 <p className="description">

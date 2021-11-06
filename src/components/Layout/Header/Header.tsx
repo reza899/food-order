@@ -1,12 +1,11 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import HeaderCartButton from "./HeaderCartButton";
-import Button from "../../UI/Button";
 
-import { GiHotMeal } from "react-icons/gi";
+import { GiHotMeal, GiHamburgerMenu } from "react-icons/gi";
 import {
-  StyledDiv,
+  StyleDivImg,
   StyledHeader,
   StyledLink,
   StyledNavLink,
@@ -15,6 +14,7 @@ import {
 
 import { selectIsLoggedin } from "../../../store/store";
 import { onLoggedOut } from "../../../store/authSlice";
+import Sidebar from "./Sidebar";
 
 interface Props {
   className?: string;
@@ -34,15 +34,16 @@ const Header = ({ className, onShowCart }: Props) => {
   return (
     <StyledHeader className={className}>
       <nav>
-        <StyledLink to="/">
-          <GiHotMeal
-            color="wheat"
-            size="2rem"
-            style={{ verticalAlign: "baseline" }}
-          />
-          <h1>Food Order</h1>
-        </StyledLink>
-
+        <div className="logo">
+          <StyledLink to="/">
+            <GiHotMeal
+              color="wheat"
+              size="2rem"
+              style={{ verticalAlign: "baseline" }}
+            />
+            <h1>Food Order</h1>
+          </StyledLink>
+        </div>
         <div className="links">
           <StyledNavLink to="/category">Categories</StyledNavLink>
           <StyledNavLink to="/area">Areas</StyledNavLink>
@@ -54,12 +55,13 @@ const Header = ({ className, onShowCart }: Props) => {
             <StyledSpan onClick={logoutHandler}>Logout</StyledSpan>
           )}
         </div>
+
         <HeaderCartButton onClick={onShowCart} />
+        <Sidebar />
       </nav>
-      <StyledDiv>
-        <img src="/assets/meals.png" alt="a table full of meals" />
-        {/*  */}
-      </StyledDiv>
+      <StyleDivImg>
+        <img src="/assets/meals.png" alt="order your meal!" />
+      </StyleDivImg>
     </StyledHeader>
   );
 };

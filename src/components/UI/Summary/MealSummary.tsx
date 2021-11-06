@@ -32,7 +32,7 @@ const MealSummary = ({ meal, topHeader }: Props) => {
         Category:
         <Link
           to={`/category/${meal.category?.name}`}
-          style={{ color: "yellow", fontSize: "0.8rem" }}
+          style={{ color: "var(--color-9)", fontSize: "0.8rem" }}
         >
           <span> {meal.category?.name}</span>
         </Link>
@@ -41,7 +41,7 @@ const MealSummary = ({ meal, topHeader }: Props) => {
         Area:
         <Link
           to={`/area/${meal.area?.name}`}
-          style={{ color: "var(--color-4)", fontSize: "0.8rem" }}
+          style={{ color: "var(--color-9)", fontSize: "0.8rem" }}
         >
           <span>{meal.area?.name}</span>
         </Link>

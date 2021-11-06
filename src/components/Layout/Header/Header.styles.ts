@@ -15,21 +15,25 @@ export const StyledHeader = styled("div")`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10%;
+    padding: 0 5%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     z-index: 10;
+  }
+
+  .logo {
+    flex-grow: 1;
   }
 
   .links {
     display: flex;
     justify-content: space-between;
-    @media (max-width: 700px) {
+    @media (max-width: 930px) {
       display: none;
     }
   }
 `;
 
-export const StyledDiv = styled.div`
+export const StyleDivImg = styled.div`
   width: 100%;
   height: 25rem;
   z-index: 0;
@@ -73,7 +77,7 @@ export const StyledLink = styled(Link)`
     font-size: 1.5rem;
     margin-left: 1rem;
 
-    @media (max-width: 450px) {
+    @media (max-width: 500px) {
       display: none;
     }
   }
@@ -84,6 +88,7 @@ export const StyledSpan = styled("span")`
   text-decoration: none;
   margin: 1rem;
   position: relative;
+  cursor: pointer;
 
   h1 {
     display: inline;
