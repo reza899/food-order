@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  background-color: darkgray;
   padding: 2px 16px;
 
   .cartItem {

@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  background-color: darkgray;
 
   .item {
     display: grid;
