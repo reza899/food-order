@@ -9,19 +9,17 @@ const Wrapper = styled.div`
   justify-content: center;
   align-content: center;
   background-color: darkgray;
-  padding: 2px 16px;
 
   .item {
     display: grid;
-    grid-template-columns: 70% 30%;
-    align-items: center;
+    grid-template-columns: auto;
+    justify-items: center;
     margin: 10px 10px;
     padding: 2rem;
     position: relative;
     box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    width: 30%;
     transition: 350ms opacity ease-in 1ms;
     opacity: 0.8;
     border-radius: 14px;

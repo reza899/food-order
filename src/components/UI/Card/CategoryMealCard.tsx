@@ -37,10 +37,13 @@ const Wrapper = styled.div`
     padding: 1rem;
   }
   img {
-    margin: 1rem;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    /* margin: 1rem; */
     border-radius: 10px;
     justify-self: stretch;
-    min-height: 250px;
+    /* min-height: 250px; */
   }
 
   .addbtn {
@@ -62,7 +65,7 @@ const CategoryMealCard = ({ clickHandler, mealsCategory }: Props) => {
           return (
             <div key={mealCat.name} className="item">
               <h2 className="header">{mealCat.name}</h2>
-              <img src={mealCat.thumbImg} alt={mealCat.name} height={100} />
+              <img src={mealCat.thumbImg} alt={mealCat.name} />
               {mealCat.description && (
                 <p className="description">
                   {mealCat.description.slice(0, 100)}...

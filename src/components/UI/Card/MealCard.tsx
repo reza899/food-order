@@ -12,32 +12,30 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 50%;
-  margin: 2rem auto;
-  padding: 2rem;
+  width: 85%;
+  margin: 1rem auto;
+  padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 5px 10px 8px #383838;
 
   img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     border-radius: 5% 5%;
-    border: 1px solid #383838;
+
     margin: 0 0;
     position: relative;
-    height: 500px;
-
-    @media only screen and (max-width: 400px) {
-      height: 200px;
-    }
-
-    @media only screen and (max-width: 700px) {
-      height: 300px;
-    }
   }
 
   p.tag {
-    font-size: 10px;
-    color: gray;
+    font-size: 1rem;
+    color: var(--color-5);
     align-self: flex-start;
+  }
+
+  span {
+    color: var(--color-5);
   }
 
   .instruction {
@@ -58,11 +56,11 @@ const MealCard = ({ meal }: Props) => {
       <Wrapper>
         {amount && (
           <h1>
-            Selected <span style={{ color: "red" }}>{amount}</span> of
+            Selected <span>{amount}</span> of
           </h1>
         )}
         <img className="img" src={meal.thumbImg} alt={meal.name} height={500} />
-        <h4>Instruction: </h4>
+        <h3>Instruction: </h3>
         <p className="instruction">{meal.instrution}</p>
         <p className="tag">Tags: {meal.tags?.map((tag) => `${tag} `)}</p>
       </Wrapper>
