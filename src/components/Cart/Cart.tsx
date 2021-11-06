@@ -16,6 +16,7 @@ import {
 } from "../../store/store";
 import { onRemove, clear, onAdd } from "../../store/cartSlice";
 import { CartSubmitting } from "../../hooks/useCartForm";
+import Button from "../UI/Button";
 
 interface Props {
   className?: string;
@@ -68,13 +69,16 @@ const Cart = ({ className, onClose }: Props) => {
           </div>
           {!isOrdered && isLoggedIn ? (
             <div className="actions">
-              <button className="button--alt" onClick={onClose}>
+              <Button
+                style={{ backgroundColor: "white", color: "black" }}
+                onClick={onClose}
+              >
                 Cancel
-              </button>
+              </Button>
               {items.length > 0 && (
-                <button className="button" onClick={() => setIsOrdered(true)}>
+                <Button className="orderbtn" onClick={() => setIsOrdered(true)}>
                   Order
-                </button>
+                </Button>
               )}
             </div>
           ) : (

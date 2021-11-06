@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import useCartForm from "../../hooks/useCartForm";
 import { CartSubmitting } from "../../hooks/useCartForm";
 import { selectCartItems } from "../../store/store";
+import Button from "../UI/Button";
 
 import { Form } from "./Checkout.styles";
 
@@ -77,11 +78,15 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
         </div>
 
         <div className={className}>
-          <div className="actions">
-            <button className="button--alt" type="button" onClick={onClose}>
+          <div>
+            <Button
+              type="button"
+              onClick={onClose}
+              style={{ backgroundColor: "white", color: "black" }}
+            >
               Cancel
-            </button>
-            <button className="submit">Confirm</button>
+            </Button>
+            <Button className="submit">Confirm</Button>
           </div>
         </div>
       </Form>
