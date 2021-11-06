@@ -36,6 +36,8 @@ const StyledAvailableMeals = styled.section`
       transform: translateY(0);
     }
   }
+
+  
 `;
 
 const SpecialMeals = () => {
@@ -54,6 +56,7 @@ const SpecialMeals = () => {
           objectId: rand.idMeal,
           price: Number((Math.random() * 12.5).toFixed(2)),
           description: rand.strArea,
+          thumbImg: rand.strMealThumb,
         });
       }
       setMeals(randomMeals);

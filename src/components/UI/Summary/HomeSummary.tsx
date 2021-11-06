@@ -5,7 +5,7 @@ const HomeSummary = () => {
     <Summary>
       <br />
       <br />
-      <h1>Hungry? order your next meal</h1>
+      <h1>Hungry? order your next meal 😋 </h1>
     </Summary>
   );
 };

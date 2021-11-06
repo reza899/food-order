@@ -5,12 +5,14 @@ import styled from "styled-components";
 
 const StyledInput = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-bottom: 0.5rem;
 
   & label {
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 0.7rem;
     margin-right: 1rem;
   }
 
