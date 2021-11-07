@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import useCartForm from "../../hooks/useCartForm";
 import { CartSubmitting } from "../../hooks/useCartForm";
-import { selectCartItems } from "../../store/store";
+import { selectCartItems, selectCartTotalAmount } from "../../store/store";
+import Button from "../UI/Button";
 
-import { Form } from "./Checkout.styles";
+import { IoBagCheckOutline } from "react-icons/io5";
+import { Form, StyleLiCheckout } from "./Checkout.styles";
 
 interface Props {
   className?: string;
@@ -13,6 +15,7 @@ interface Props {
 
 const Checkout = ({ onClose, className, onConfirm }: Props) => {
   const items = useSelector(selectCartItems);
+  const totalAmount = useSelector(selectCartTotalAmount);
 
   const {
     state: values,
@@ -30,15 +33,29 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
 
   return (
     <div>
-      <ul>
-        {items.map((item) => {
+      <div className={className}>
+        <h3>
+          <IoBagCheckOutline size="20" color="black" /> Checkout
+        </h3>
+        {items.map(({ name, price, amount }, i) => {
           return (
-            <li key={item.objectId}>
-              {item.amount} x {item.name} ({item.price})
-            </li>
+            <StyleLiCheckout key={i}>
+              <span className="title">
+                {i + 1} - {name}
+              </span>
+              <div className="price">
+                <span className="">${price}</span>
+                <span className="">{amount}</span>
+                <span className="totalPrice">${price! * amount!}</span>
+              </div>
+            </StyleLiCheckout>
           );
         })}
-      </ul>
+      </div>
+      <div className="total">
+        <span>Total Amount</span>
+        <span>{`$${totalAmount.toFixed(2)}`}</span>
+      </div>
       <Form onSubmit={submitHandler} className={className}>
         <div className="control">
           <label htmlFor="name">Name:</label>
@@ -77,11 +94,15 @@ const Checkout = ({ onClose, className, onConfirm }: Props) => {
         </div>
 
         <div className={className}>
-          <div className="actions">
-            <button className="button--alt" type="button" onClick={onClose}>
+          <div>
+            <Button
+              type="button"
+              onClick={onClose}
+              style={{ backgroundColor: "white", color: "black" }}
+            >
               Cancel
-            </button>
-            <button className="submit">Confirm</button>
+            </Button>
+            <Button className="submit">Confirm</Button>
           </div>
         </div>
       </Form>

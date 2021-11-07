@@ -16,6 +16,8 @@ import {
 } from "../../store/store";
 import { onRemove, clear, onAdd } from "../../store/cartSlice";
 import { CartSubmitting } from "../../hooks/useCartForm";
+import Button from "../UI/Button";
+import { IoCartOutline } from "react-icons/io5";
 
 interface Props {
   className?: string;
@@ -52,6 +54,9 @@ const Cart = ({ className, onClose }: Props) => {
     <>
       {!isOrdered ? (
         <>
+          <h3 style={{ textAlign: "center" }}>
+            <IoCartOutline size="20" color="black" /> Checkout
+          </h3>
           <ul className="cart-items">
             {items.map((item) => (
               <CartItem
@@ -68,13 +73,16 @@ const Cart = ({ className, onClose }: Props) => {
           </div>
           {!isOrdered && isLoggedIn ? (
             <div className="actions">
-              <button className="button--alt" onClick={onClose}>
+              <Button
+                style={{ backgroundColor: "white", color: "black" }}
+                onClick={onClose}
+              >
                 Cancel
-              </button>
+              </Button>
               {items.length > 0 && (
-                <button className="button" onClick={() => setIsOrdered(true)}>
+                <Button className="orderbtn" onClick={() => setIsOrdered(true)}>
                   Order
-                </button>
+                </Button>
               )}
             </div>
           ) : (
@@ -87,7 +95,11 @@ const Cart = ({ className, onClose }: Props) => {
           )}
         </>
       ) : (
-        <Checkout onClose={onClose} onConfirm={orderConfirmHandler} />
+        <Checkout
+          className="cart-items"
+          onClose={onClose}
+          onConfirm={orderConfirmHandler}
+        />
       )}
     </>
   );
