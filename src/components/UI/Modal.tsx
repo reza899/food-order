@@ -7,8 +7,8 @@ import Backdrop from "./Backdrop";
 const StyledModal = styled.div`
   position: fixed;
   top: 5vh;
-  left: 25%;
-  width: 50%;
+  left: 15%;
+  width: 70%;
   background-color: white;
   padding: 1rem;
   border-radius: 14px;
@@ -26,7 +26,7 @@ const StyledModal = styled.div`
     background-color: rgba(0, 0, 0, 0.75);
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     .modal {
       width: 40rem;
       left: calc(50% - 20rem);
