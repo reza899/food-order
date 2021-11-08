@@ -90,6 +90,7 @@ const CategoryDetailsCard = ({ clickHandler, mealsCategory }: Props) => {
       onAdd({
         name: mealCat.name,
         objectId: mealCat.objectId!,
+        thumbImg: mealCat.thumbImg,
         amount: 1,
         price: Number((Math.random() * 12.5).toFixed(2)),
       })

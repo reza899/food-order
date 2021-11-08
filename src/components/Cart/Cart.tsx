@@ -55,7 +55,7 @@ const Cart = ({ className, onClose }: Props) => {
       {!isOrdered ? (
         <>
           <h3 style={{ textAlign: "center" }}>
-            <IoCartOutline size="20" color="black" /> Checkout
+            <IoCartOutline size="20" color="black" /> Your Cart
           </h3>
           <ul className="cart-items">
             {items.map((item) => (
